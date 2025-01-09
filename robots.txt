@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /internal/       # 禁止爬取內部使用的頁面
+Disallow: /activity/*/qualification/  # 禁止爬取資格驗證相關的活動頁面
+
+# 允許爬取的公開部分
+Allow: /
+
+# 網站地圖
+Sitemap: https://igopetservice.com.tw/sitemap.xml
