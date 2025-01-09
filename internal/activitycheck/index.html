@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>內部活動查詢</title>
+    <link rel="icon" href="/images/icons/logo.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/images/icons/logo.ico" type="image/x-icon" />
+    <link href="/libs/tailwindcss/tailwind.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">內部活動查詢系統</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-10">
+        <h1 class="text-4xl font-bold text-center mb-6">活動查詢</h1>
+        <p class="text-center text-lg mb-10 text-gray-700">
+            此頁面僅供內部員工使用，請查看活動列表並選擇詳細資訊或資格驗證。
+        </p>
+
+        <!-- 查詢中提示 -->
+        <div id="loadingMessage" class="text-center text-gray-500 text-lg py-10">
+            活動查詢中...
+        </div>
+
+        <!-- 活動查詢表格 -->
+        <div id="activityTableContainer" class="overflow-x-auto hidden">
+            <table class="table-auto w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="border border-gray-300 px-4 py-2">詳細</th>
+                        <th class="border border-gray-300 px-4 py-2">活動驗證</th>
+                        <th class="border border-gray-300 px-4 py-2">活動編號</th>
+                        <th class="border border-gray-300 px-4 py-2">活動名稱</th>
+                        <th class="border border-gray-300 px-4 py-2">起日</th>
+                        <th class="border border-gray-300 px-4 py-2">迄日</th>
+                        <th class="border border-gray-300 px-4 py-2">狀態</th>
+                    </tr>
+                </thead>
+                <tbody id="activityTable">
+                    <!-- 動態生成活動資料 -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>此頁面僅供內部使用，請勿外洩。</p>
+        </div>
+    </footer>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

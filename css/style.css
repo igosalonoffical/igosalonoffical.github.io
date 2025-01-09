@@ -1,0 +1,215 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1; /* 撐滿剩餘空間 */
+}
+
+/** layout */
+.logo {
+  border-radius: 50%; /* 讓圖片變成圓形 */
+  vertical-align: middle; /* 垂直置中對齊 */
+  object-fit: cover; /* 確保圖片完整顯示 */
+  transition: transform 0.2s ease; /* 懸停動畫效果 */
+}
+
+/* 懸停效果 */
+.logo:hover {
+  transform: scale(1.1); /* 放大效果 */
+}
+
+/** home */
+.carousel-item img {
+  height: 400px;
+  width: auto;
+  object-fit: cover; /* 如果圖片需要裁切，可以改用 cover */
+  margin: 0 auto; /* 置中 */
+  display: block; /* 將圖片設定為區塊級元素以配合 margin */
+}
+
+.carousel-inner {
+  position: relative;
+  pointer-events: none; /* 禁止事件攔截 */
+}
+
+.carousel-inner img {
+  pointer-events: auto; /* 圖片仍可點擊 */
+}
+
+button#prevSlide,
+button#nextSlide {
+  position: absolute;
+  z-index: 10; /* 確保按鈕位於圖片上方 */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+button#prevSlide:hover,
+button#nextSlide:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* 滑鼠懸停效果 */
+}
+
+button#prevSlide {
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+button#nextSlide {
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/** petservices */
+#scrollContainer {
+  display: flex;
+  gap: 16px; /* 卡片間距 */
+  overflow-x: auto; /* 允許水平滾動 */
+  scroll-behavior: smooth; /* 平滑滾動效果 */
+  padding-bottom: 1rem; /* 避免滾動條太靠近內容 */
+}
+
+.flex-none {
+  flex-shrink: 0;
+  width: calc(50% - 16px); /* 每張卡片占容器寬度的一半（含間距） */
+}
+
+button#prevSlide,
+button#nextSlide {
+  position: absolute;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+}
+
+button#prevSlide:hover,
+button#nextSlide:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* 按鈕基礎樣式 */
+button#openModal {
+  font-size: 1rem; /* 字體大小 */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* 按鈕懸停樣式 */
+button#openModal:hover {
+  transform: scale(1.05); /* 放大效果 */
+}
+
+/* 增加按鈕與段落的間距 */
+.text-center.mb-10 {
+  margin-top: 0.5rem; /* 可根據需求調整間距 */
+}
+
+/* Modal 顯示與隱藏效果 */
+#modal {
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#modal.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#modalContent {
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#modalContent.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/** contact */
+/* 社群連結的圖標樣式 */
+.flex img {
+  transition: transform 0.2s ease;
+}
+
+.flex img:hover {
+  transform: scale(1.1); /* 懸停時放大效果 */
+}
+
+/* Google Maps 外框樣式 */
+iframe {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/** activity */
+/* 表格基礎樣式 */
+table {
+  border-spacing: 0;
+  border: 1px solid #ccc;
+}
+
+thead th {
+  text-align: left;
+  background-color: #f9f9f9;
+  padding: 8px;
+  font-weight: bold;
+}
+
+tbody td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #f0f8ff; /* 懸停效果 */
+}
+
+/* 狀態標籤樣式 */
+.status {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.status.not-started {
+  background-color: #fbbf24; /* 黃色 */
+  color: #fff;
+}
+
+.status.in-progress {
+  background-color: #34d399; /* 綠色 */
+  color: #fff;
+}
+
+.status.ended {
+  background-color: #ef4444; /* 紅色 */
+  color: #fff;
+}

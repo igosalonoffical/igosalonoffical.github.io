@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <title>優惠資格判斷</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-size: 1.2em;
+    line-height: 1.2; /* 增加行距，提升可讀性 */
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  .section {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+
+  .section-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .radio-group, .input-group {
+    margin-bottom: 10px;
+  }
+
+  .radio-group label,
+  .input-group label {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .radio-group input[type="radio"] {
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  input[type="number"] {
+    width: 100px;
+    padding: 4px;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #5cb85c;
+    color: #fff;
+  }
+
+  #result {
+    font-size: 2em;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #d44;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* 使整頁灰階呈現、指標無法操作的簡易效果，可自行調整 */
+  .disabled-page {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* 活動日期資訊 */
+  .activity-dates {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+  }
+
+  #activityStatus {
+    color: #d44;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  /* 響應式設計 */
+  @media screen and (max-width: 800px) {
+    body {
+      font-size: 1.4em; /* 行動裝置全局文字放大 */
+      line-height: 2; /* 提升行距，便於閱讀 */
+      padding: 10px; /* 縮小邊距，適配小螢幕 */
+    }
+
+    h1 {
+      font-size: 2em; /* 標題文字放大 */
+    }
+
+    .section {
+      font-size: 1.2em; /* 區塊文字適配 */
+      padding: 20px; /* 增加內距 */
+    }
+
+    .section-title {
+      font-size: 1.3em; /* 分區標題放大 */
+    }
+
+    input[type="number"] {
+      width: 100%; /* 寬度適配行動裝置 */
+      font-size: 1.2em; /* 提升輸入框文字大小 */
+    }
+
+    button {
+      font-size: 3em; /* 提升按鈕文字大小 */
+	  width: 200px;
+      padding: 12px 20px; /* 增加按鈕點擊範圍 */
+    }
+
+    #result {
+      font-size: 2.5em; /* 提示訊息文字放大 */
+    }
+  }
+</style>
+
+</head>
+<body>
+
+  <h1>優惠資格判斷</h1>
+
+  <!-- 活動時間顯示 -->
+  <div class="activity-dates">
+    活動時間：2025/02/04 ~ 2025/03/31
+    <span id="activityStatus"></span>
+  </div>
+
+  <!-- 1. 客戶屬性：新客 / 舊客 -->
+  <div class="section">
+    <div class="section-title">客戶屬性</div>
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="customerType" value="new" checked>
+        新客
+      </label>
+      <label>
+        <input type="radio" name="customerType" value="old">
+        舊客
+      </label>
+    </div>
+  </div>
+
+  <!-- 2. 優惠類型選擇：單次小美 / 包月 -->
+  <div class="section">
+    <div class="section-title">選擇優惠類型</div>
+    <div class="radio-group">
+      <label for="type_single">
+        <input type="radio" id="type_single" name="discountType" value="single" checked>
+        單次小美
+      </label>
+      <label for="type_monthly">
+        <input type="radio" id="type_monthly" name="discountType" value="monthly">
+        包月
+      </label>
+    </div>
+  </div>
+
+  <!-- 3. 單次小美相關欄位 -->
+  <div id="singleForm" class="section">
+    <div class="section-title">單次小美條件</div>
+
+    <!-- 是否提前3天預約 -->
+    <div class="radio-group">
+      <span>是否提前3天預約：</span>
+      <label>
+        <input type="radio" name="daysBeforeAppointment_single" value="yes" checked>
+        是 (符合)
+      </label>
+      <label>
+        <input type="radio" name="daysBeforeAppointment_single" value="no">
+        否 (不符合)
+      </label>
+    </div>
+
+    <!-- 是否已預付30%訂金 -->
+    <div class="radio-group">
+      <span>是否已預付30%訂金：</span>
+      <label>
+        <input type="radio" name="deposit_single" value="yes" checked>
+        是 (已付)
+      </label>
+      <label>
+        <input type="radio" name="deposit_single" value="no">
+        否 (未付)
+      </label>
+    </div>
+
+    <!-- 是否提前或準時到店 -->
+    <div class="radio-group">
+      <span>是否提前或準時到店：</span>
+      <label>
+        <input type="radio" name="arriveOnTime_single" value="yes" checked>
+        是 (符合)
+      </label>
+      <label>
+        <input type="radio" name="arriveOnTime_single" value="no">
+        否 (不符合)
+      </label>
+    </div>
+
+    <!-- 距離上次來店天數 -->
+    <div class="input-group">
+      <label for="daysSinceLastVisit_single">距離上次來店天數：</label>
+      <input type="number" id="daysSinceLastVisit_single" placeholder="請輸入天數" min="0" value="0">
+    </div>
+  </div>
+
+  <!-- 4. 包月相關欄位 -->
+  <div id="monthlyForm" class="section hidden">
+    <div class="section-title">包月條件</div>
+
+    <!-- 第一次預約成功且付款成功 -->
+    <div class="radio-group">
+      <span>第一次預約成功且付款成功：</span>
+      <label>
+        <input type="radio" name="firstBookingSuccess" value="yes" checked>
+        是 (符合)
+      </label>
+      <label>
+        <input type="radio" name="firstBookingSuccess" value="no">
+        否 (不符合)
+      </label>
+    </div>
+
+    <!-- 35天內是否完成4次使用 -->
+    <div class="radio-group">
+      <span>35天內是否完成4次使用：</span>
+      <label>
+        <input type="radio" name="timesUsed" value="yes" checked>
+        是 (已完成)
+      </label>
+      <label>
+        <input type="radio" name="timesUsed" value="no">
+        否 (未完成)
+      </label>
+    </div>
+
+    <!-- 每次都提前或準時到店 -->
+    <div class="radio-group">
+      <span>每次都提前或準時到店：</span>
+      <label>
+        <input type="radio" name="arriveOnTime_monthly" value="yes" checked>
+        是 (符合)
+      </label>
+      <label>
+        <input type="radio" name="arriveOnTime_monthly" value="no">
+        否 (不符合)
+      </label>
+    </div>
+
+    <!-- 距離上次包月結束天數 -->
+    <div class="input-group">
+      <label for="daysSinceLastPackage">距離上次包月結束天數：</label>
+      <input type="number" id="daysSinceLastPackage" placeholder="請輸入天數" min="0" value="0">
+    </div>
+  </div>
+
+  <!-- 5. 檢查結果 -->
+  <button id="checkButton" onclick="checkDiscount()">檢查優惠資格</button>
+  <div id="result"></div>
+
+  <script>
+    //=== 活動日期設定 ===
+    const startDate = new Date("2025-01-08T00:00:00");
+    const endDate = new Date("2025-03-31T23:59:59");
+
+    //=== 網頁載入後檢查是否已超過活動時間 ===
+    window.addEventListener('DOMContentLoaded', () => {
+      checkActivityPeriod();
+      switchForm(); // 預設顯示單次小美區塊
+    });
+
+    //=== 檢查活動日期 ===
+    function checkActivityPeriod() {
+      const now = new Date();
+      const activityStatusEl = document.getElementById('activityStatus');
+
+      if (now < startDate) {
+        // 活動尚未開始
+        activityStatusEl.textContent = "（活動尚未開始）";
+        // 也可以選擇是否做不可編輯處理
+        disablePage(true); 
+      } 
+      else if (now > endDate) {
+        // 活動已經結束
+        activityStatusEl.textContent = "（活動已結束）";
+        // 設為唯讀/不可點擊
+        disablePage(false);
+      } 
+      else {
+        // 活動進行中
+        activityStatusEl.textContent = "（活動進行中）";
+      }
+    }
+
+    //=== 停用整頁 ===
+    // 若參數為 true，則只顯示活動尚未開始的狀態
+    // 若參數為 false，則顯示活動已結束的狀態
+    function disablePage(isNotStarted) {
+      // 使所有可互動的元素 (輸入框、按鈕等) 失效
+      document.querySelectorAll('input, button').forEach(el => {
+        el.disabled = true;
+      });
+      // 加上灰階效果提示
+      document.body.classList.add('disabled-page');
+
+      // 顯示不同提示文字
+      if (isNotStarted) {
+        document.getElementById('result').textContent = "活動尚未開始，暫時無法操作。";
+      } else {
+        document.getElementById('result').textContent = "活動已結束，感謝您的參與。";
+      }
+    }
+
+    //=== 切換表單：根據優惠類型(單次/包月) 顯示/隱藏對應區塊 ===
+    const typeRadios = document.querySelectorAll('input[name="discountType"]');
+    typeRadios.forEach(radio => {
+      radio.addEventListener('change', switchForm);
+    });
+
+    function switchForm() {
+      const discountType = document.querySelector('input[name="discountType"]:checked').value;
+      const singleForm = document.getElementById('singleForm');
+      const monthlyForm = document.getElementById('monthlyForm');
+      const result = document.getElementById('result');
+
+      // 清空結果
+      result.textContent = '';
+
+      // 切換顯示
+      if (discountType === 'single') {
+        singleForm.classList.remove('hidden');
+        monthlyForm.classList.add('hidden');
+      } else {
+        singleForm.classList.add('hidden');
+        monthlyForm.classList.remove('hidden');
+      }
+    }
+
+    //=== 檢查優惠資格 ===
+    function checkDiscount() {
+      console.log("開始檢查優惠資格...");
+
+      // 1. 先確認新客或舊客
+      const customerType = document.querySelector('input[name="customerType"]:checked').value; 
+      // new -> 新客, old -> 舊客
+
+      // 2. 確認優惠類型
+      const discountType = document.querySelector('input[name="discountType"]:checked').value;
+      let resultText = "";
+      let isQualified = false; // 紀錄是否符合優惠
+      let discountInfo = "";  // 顯示折數
+
+      // 3. 設定「新客 / 舊客 + 單次 / 包月」對應的折數
+      //   新客： 單次小美 9折, 包月 95折
+      //   舊客： 單次小美 8折, 包月 85折
+      if (customerType === "new" && discountType === "single") {
+        discountInfo = "9折";
+      } else if (customerType === "new" && discountType === "monthly") {
+        discountInfo = "95折";
+      } else if (customerType === "old" && discountType === "single") {
+        discountInfo = "8折";
+      } else if (customerType === "old" && discountType === "monthly") {
+        discountInfo = "85折";
+      }
+
+      if (discountType === "single") {
+        //=== 檢查單次小美條件 ===
+        console.log("檢查單次小美條件...");
+        const daysBeforeAppointment = document.querySelector('input[name="daysBeforeAppointment_single"]:checked').value;
+        const deposit = document.querySelector('input[name="deposit_single"]:checked').value;
+        const arriveOnTime = document.querySelector('input[name="arriveOnTime_single"]:checked').value;
+        const daysSinceLastVisit = parseInt(document.getElementById('daysSinceLastVisit_single').value, 10);
+
+        console.log("是否提前3天預約:", daysBeforeAppointment);
+        console.log("是否預付30%訂金:", deposit);
+        console.log("是否準時到店:", arriveOnTime);
+        console.log("距離上次來店天數:", daysSinceLastVisit);
+
+        // 簡易判斷 (可依需求自行調整)
+        if (
+          daysBeforeAppointment === "yes" &&
+          deposit === "yes" &&
+          arriveOnTime === "yes" &&
+          daysSinceLastVisit <= 12
+        ) {
+          isQualified = true;
+        } else {
+          isQualified = false;
+        }
+
+        if (isQualified) {
+          resultText = `符合『單次小美』優惠資格，您可享「${discountInfo}」！`;
+        } else {
+          resultText = "不符合『單次小美』優惠資格。";
+        }
+
+      } else {
+        //=== 檢查包月條件 ===
+        console.log("檢查包月條件...");
+		const firstBookingSuccess = document.querySelector('input[name="firstBookingSuccess"]:checked').value;
+        const timesUsed = document.querySelector('input[name="timesUsed"]:checked').value;
+        const arriveOnTimeMonthly = document.querySelector('input[name="arriveOnTime_monthly"]:checked').value;
+        const daysSinceLastPackage = parseInt(document.getElementById('daysSinceLastPackage').value, 10);
+
+		console.log("第一次預約成功且付款成功:", firstBookingSuccess);
+        console.log("35天內是否完成4次使用:", timesUsed);
+        console.log("每次是否準時到店:", arriveOnTimeMonthly);
+        console.log("距離上次包月結束天數:", daysSinceLastPackage);
+
+        // 簡易判斷 (可依需求自行調整)
+        if (
+		  firstBookingSuccess === "yes" &&
+          timesUsed === "yes" &&
+          arriveOnTimeMonthly === "yes" &&
+          daysSinceLastPackage <= 20
+        ) {
+          isQualified = true;
+        } else {
+          isQualified = false;
+        }
+
+        if (isQualified) {
+          resultText = `符合『包月』優惠資格，您可享「${discountInfo}」！`;
+        } else {
+          resultText = "不符合『包月』優惠資格。";
+        }
+      }
+
+      //=== 顯示判斷結果 ===
+      document.getElementById('result').textContent = resultText;
+      console.log("檢查結束:", resultText);
+    }
+  </script>
+
+</body>
+</html>

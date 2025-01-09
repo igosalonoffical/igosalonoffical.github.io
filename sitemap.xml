@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- 首頁 -->
+    <url>
+        <loc>https://igopetservice.com.tw/</loc>
+        <lastmod>2025-01-09</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- 服務頁面 -->
+    <url>
+        <loc>https://igopetservice.com.tw/petservices/</loc>
+        <lastmod>2025-01-09</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- 文章 -->
+    <url>
+        <loc>https://igopetservice.com.tw/posts/</loc>
+        <lastmod>2025-01-09</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- 活動查詢 -->
+    <url>
+        <loc>https://igopetservice.com.tw/activity/</loc>
+        <lastmod>2025-01-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- 作品集 -->
+    <url>
+        <loc>https://igopetservice.com.tw/portfolio/</loc>
+        <lastmod>2025-01-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- 聯絡我們 -->
+    <url>
+        <loc>https://igopetservice.com.tw/contact/</loc>
+        <lastmod>2025-01-09</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+</urlset>

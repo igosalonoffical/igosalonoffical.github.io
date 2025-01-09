@@ -1,0 +1,118 @@
+<section class="container mx-auto py-10">
+    <!-- 服務頁面標題 -->
+    <h1 class="text-4xl font-bold text-center mb-6">服務內容</h1>
+    <p class="text-center text-lg mb-10 text-gray-700">
+        愛狗Salon 提供多樣的專業寵物服務，滿足您的毛孩各種需求。
+    </p>
+    <div class="text-center mb-10">
+        <button id="openModal" class="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600">
+            服務詳細資訊
+        </button>
+    </div>
+
+    <!-- 服務項目滾動區域 -->
+    <div class="relative">
+        <!-- 左右按鈕 -->
+        <button id="prevSlide"
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 z-10">
+            &#10094;
+        </button>
+        <button id="nextSlide"
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 z-10">
+            &#10095;
+        </button>
+
+        <!-- 卡片滾動容器 -->
+        <div class="overflow-hidden">
+            <div class="flex gap-4 transition-transform duration-500 ease-in-out" id="scrollContainer">
+                <!-- 卡片 -->
+                <div class="flex-none bg-white shadow-md rounded-lg p-6">
+                    <img src="images/petservices/grooming.jpg" alt="美容服務"
+                        class="rounded-lg mb-4 h-40 w-full object-cover">
+                    <h2 class="text-xl font-semibold mb-2">美容服務</h2>
+                    <p class="text-gray-600">提供專業的修毛、造型和指甲護理，讓您的毛孩煥然一新。</p>
+                </div>
+                <div class="flex-none bg-white shadow-md rounded-lg p-6">
+                    <img src="images/petservices/bathing.jpg" alt="洗澡服務"
+                        class="rounded-lg mb-4 h-40 w-full object-cover">
+                    <h2 class="text-xl font-semibold mb-2">洗澡服務</h2>
+                    <p class="text-gray-600">使用溫和的寵物專用清潔產品，保持毛孩的清潔與健康。</p>
+                </div>
+                <div class="flex-none bg-white shadow-md rounded-lg p-6">
+                    <img src="images/petservices/boarding.jpg" alt="寵物住宿"
+                        class="rounded-lg mb-4 h-40 w-full object-cover">
+                    <h2 class="text-xl font-semibold mb-2">寵物住宿</h2>
+                    <p class="text-gray-600">安心舒適的住宿環境，讓您外出時毛孩也能享受安心的照顧。</p>
+                </div>
+                <div class="flex-none bg-white shadow-md rounded-lg p-6">
+                    <img src="images/petservices/single_service.jpg" alt="單項服務"
+                        class="rounded-lg mb-4 h-40 w-full object-cover">
+                    <h2 class="text-xl font-semibold mb-2">單項服務</h2>
+                    <p class="text-gray-600">包含剪指甲、擠肛門腺等基礎服務，為毛孩的日常健康護理提供支持。</p>
+                </div>
+                <div class="flex-none bg-white shadow-md rounded-lg p-6">
+                    <img src="images/petservices/products.jpg" alt="商品販售"
+                        class="rounded-lg mb-4 h-40 w-full object-cover">
+                    <h2 class="text-xl font-semibold mb-2">商品販售</h2>
+                    <p class="text-gray-600">提供多樣化的寵物食品及用品，滿足毛孩的日常需求。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div id="modalContent"
+            class="bg-white w-3/4 max-w-lg rounded-lg shadow-lg transform scale-95 opacity-0 transition duration-300">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-4">美容詳細資訊</h2>
+                <table class="table-auto w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border border-gray-300 px-4 py-2">服務項目</th>
+                            <th class="border border-gray-300 px-4 py-2">內容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2">基本服務</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                剪指甲、磨指甲、剃腳底毛、剃肚子毛、剃屁股毛、修腳園、擠肛門腺、拔耳毛、清耳朵、修眼角、頭小修
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2">洗澡</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                第一劑沖洗、第二劑沖洗、身體按摩、烘乾、吹整<br>
+                                護毛 (加選)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2">剪毛</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                手剪、電剪
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2">小美</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                洗澡 + 基本服務全套
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 px-4 py-2">大美</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                剪毛 + 洗澡 + 基本服務全套
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="flex justify-end p-4">
+                <button id="closeModal" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                    關閉
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

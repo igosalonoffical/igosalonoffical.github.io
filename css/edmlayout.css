@@ -1,0 +1,94 @@
+/* 背景樣式 */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #dfdfdf;
+  font-family: "Noto Sans TC", sans-serif;
+  color: #333;
+  line-height: 1.8;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* 增加文字陰影，提升可讀性 */
+  font-weight: 600;
+}
+
+/* 浮水印 */
+.watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/background-image.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.05; /* 調整透明度 */
+  pointer-events: none;
+}
+
+.background-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7); /* 白色半透明遮罩 */
+  z-index: -1; /* 放在浮水印上方，內容下方 */
+}
+
+/* 主內容容器 */
+.container {
+  background-color: rgba(255, 255, 255, 1);
+  opacity: 1; /* 確保完全不透明 */
+  border-radius: 15px; /* 圓角保留 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 20px; /* 保持內邊距 */
+  max-width: 800px;
+}
+.activity-dm {
+  background-color: #ffffff; /* 純白色背景 */
+  opacity: 1; /* 確保完全不透明 */
+  border-radius: 15px; /* 圓角保留 */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 增加陰影效果 */
+  padding: 20px; /* 保持內邊距 */
+}
+
+.activity-info {
+  background-color: #ffffff; /* 純白色背景 */
+  border: 2px dashed #e74c3c;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 確保清晰的分層 */
+  padding: 15px;
+}
+
+.activity-dm {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff; /* 白色背景，不透明 */
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 保留陰影效果 */
+  padding: 20px;
+}
+
+/* 標題樣式 */
+h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 1.2rem;
+}
+
+/* 段落樣式 */
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+/* 超連結樣式 */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
