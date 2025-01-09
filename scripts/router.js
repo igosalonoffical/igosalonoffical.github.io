@@ -9,7 +9,7 @@ const loadContent = async (view) => {
     console.log('Loading path:', path);
 
     // 加載對應的 HTML
-    const response = await fetch(`${path}/index.html`);
+    const response = await fetch(`${path}/index`);
     if (!response.ok) throw new Error(`Failed to load: ${path}`);
     const html = await response.text();
     app.innerHTML = html;
@@ -49,7 +49,7 @@ const initRouter = () => {
       const view = e.target.dataset.view;
 
       // 更新網址參數
-      const newUrl = `index.html?view=${view}`;
+      const newUrl = `index?view=${view}`;
       history.pushState({ view }, '', newUrl);
 
       // 加載對應的內容

@@ -10,7 +10,7 @@
 
     try {
         // 動態加載活動內容
-        const response = await fetch(`/activity/${activityId}/edm/${activityId}.html`);
+        const response = await fetch(`/activity/${activityId}/edm/${activityId}`);
         if (!response.ok) throw new Error('活動內容加載失敗');
         const html = await response.text();
         activityContent.innerHTML = html;
@@ -22,7 +22,7 @@
         activityContent.innerHTML = `
             <p class="text-center text-red-500">無法加載活動內容，請稍後再試。</p>
             <button class="retry-btn">重試</button>
-            <a href="/index.html?view=activity" class="back-link">返回活動查詢</a>
+            <a href="/index?view=activity" class="back-link">返回活動查詢</a>
         `;
         document.querySelector('.retry-btn').addEventListener('click', () => location.reload());
 

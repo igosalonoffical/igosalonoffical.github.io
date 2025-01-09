@@ -42,7 +42,7 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
       const endDate = activity['迄日'];
       const link = activity['詳細連結']
         ? activity['詳細連結']
-        : `/activity/edmlayout.html?view=${id.toLowerCase()}`; // 如果有詳細連結，則使用該連結，否則使用動態生成的連結
+        : `/activity/edmlayout?view=${id.toLowerCase()}`; // 如果有詳細連結，則使用該連結，否則使用動態生成的連結
 
       const row = document.createElement('tr');
       row.innerHTML = `

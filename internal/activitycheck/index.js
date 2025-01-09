@@ -43,8 +43,8 @@ document.title = `內部活動查詢系統`;
       const endDate = activity['迄日'];
       const detailLink = activity['詳細連結']
         ? activity['詳細連結']
-        : `/activity/edmlayout.html?view=${id.toLowerCase()}`; // 如果有詳細連結，則使用該連結，否則使用動態生成的連結
-      const verifyLink = `/activity/${id.toLowerCase()}/qualification/${id.toLowerCase()}_qualification.html`;
+        : `/activity/edmlayout?view=${id.toLowerCase()}`; // 如果有詳細連結，則使用該連結，否則使用動態生成的連結
+      const verifyLink = `/activity/${id.toLowerCase()}/qualification/${id.toLowerCase()}_qualification`;
 
       const row = document.createElement('tr');
       row.innerHTML = `
