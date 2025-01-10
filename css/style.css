@@ -19,14 +19,44 @@ header {
   /* 背景色，確保滾動時背景一致 */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   /* 添加陰影效果 */
+  z-index: 10;
+  /* 適當設定層級 */
 }
-
 
 main {
   margin-top: 64px;
   /* 預留與 header 高度相同的空間 */
   flex-grow: 1;
   /* 撐滿剩餘空間 */
+}
+
+/* 隱藏菜單的基礎樣式 */
+.hidden {
+  display: none;
+}
+
+/* 菜單初始樣式 */
+#mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(31, 41, 55, 1); /* 深灰背景 */
+  z-index: 50; /* 保證高於 header */
+  display: none; /* 默認隱藏 */
+}
+
+/* 菜單項目樣式 */
+#mobileMenu a {
+  display: block;
+  padding: 1rem;
+  color: white;
+  text-align: left;
+  text-decoration: none;
+}
+
+#mobileMenu a:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* 懸停背景變亮 */
 }
 
 /** layout */
