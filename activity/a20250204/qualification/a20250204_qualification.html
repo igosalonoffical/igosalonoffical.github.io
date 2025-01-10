@@ -1,141 +1,157 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
   <meta charset="utf-8">
   <title>優惠資格判斷</title>
-<style>
-  * {
-    box-sizing: border-box;
-  }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    font-size: 1.2em;
-    line-height: 1.2; /* 增加行距，提升可讀性 */
-    margin: 20px;
-    font-family: Arial, sans-serif;
-  }
-
-  h1 {
-    margin-bottom: 10px;
-  }
-
-  .section {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-
-  .section-title {
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-  }
-
-  .radio-group, .input-group {
-    margin-bottom: 10px;
-  }
-
-  .radio-group label,
-  .input-group label {
-    display: inline-block;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-
-  .radio-group input[type="radio"] {
-    margin-right: 4px;
-    vertical-align: middle;
-  }
-
-  input[type="number"] {
-    width: 100px;
-    padding: 4px;
-    margin-left: 5px;
-    margin-right: 10px;
-  }
-
-  button {
-    padding: 8px 16px;
-    font-size: 2rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    background-color: #5cb85c;
-    color: #fff;
-  }
-
-  #result {
-    font-size: 2em;
-    margin-top: 20px;
-    font-weight: bold;
-    color: #d44;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  /* 使整頁灰階呈現、指標無法操作的簡易效果，可自行調整 */
-  .disabled-page {
-    pointer-events: none;
-    opacity: 0.6;
-  }
-
-  /* 活動日期資訊 */
-  .activity-dates {
-    margin: 10px 0;
-    font-weight: bold;
-    color: #333;
-  }
-
-  #activityStatus {
-    color: #d44;
-    font-weight: bold;
-    margin-left: 10px;
-  }
-
-  /* 響應式設計 */
-  @media screen and (max-width: 800px) {
     body {
-      font-size: 1.4em; /* 行動裝置全局文字放大 */
-      line-height: 2; /* 提升行距，便於閱讀 */
-      padding: 10px; /* 縮小邊距，適配小螢幕 */
+      font-size: 1.2em;
+      line-height: 1.2;
+      /* 增加行距，提升可讀性 */
+      margin: 20px;
+      font-family: Arial, sans-serif;
     }
 
     h1 {
-      font-size: 2em; /* 標題文字放大 */
+      margin-bottom: 10px;
     }
 
     .section {
-      font-size: 1.2em; /* 區塊文字適配 */
-      padding: 20px; /* 增加內距 */
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
     }
 
     .section-title {
-      font-size: 1.3em; /* 分區標題放大 */
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .radio-group,
+    .input-group {
+      margin-bottom: 10px;
+    }
+
+    .radio-group label,
+    .input-group label {
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .radio-group input[type="radio"] {
+      margin-right: 4px;
+      vertical-align: middle;
     }
 
     input[type="number"] {
-      width: 100%; /* 寬度適配行動裝置 */
-      font-size: 1.2em; /* 提升輸入框文字大小 */
+      width: 100px;
+      padding: 4px;
+      margin-left: 5px;
+      margin-right: 10px;
     }
 
     button {
-      font-size: 3em; /* 提升按鈕文字大小 */
-	  width: 200px;
-      padding: 12px 20px; /* 增加按鈕點擊範圍 */
+      padding: 8px 16px;
+      font-size: 2rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background-color: #5cb85c;
+      color: #fff;
     }
 
     #result {
-      font-size: 2.5em; /* 提示訊息文字放大 */
+      font-size: 2em;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #d44;
     }
-  }
-</style>
+
+    .hidden {
+      display: none;
+    }
+
+    /* 使整頁灰階呈現、指標無法操作的簡易效果，可自行調整 */
+    .disabled-page {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* 活動日期資訊 */
+    .activity-dates {
+      margin: 10px 0;
+      font-weight: bold;
+      color: #333;
+    }
+
+    #activityStatus {
+      color: #d44;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    /* 響應式設計 */
+    @media screen and (max-width: 800px) {
+      body {
+        font-size: 1.4em;
+        /* 行動裝置全局文字放大 */
+        line-height: 2;
+        /* 提升行距，便於閱讀 */
+        padding: 10px;
+        /* 縮小邊距，適配小螢幕 */
+      }
+
+      h1 {
+        font-size: 2em;
+        /* 標題文字放大 */
+      }
+
+      .section {
+        font-size: 1.2em;
+        /* 區塊文字適配 */
+        padding: 20px;
+        /* 增加內距 */
+      }
+
+      .section-title {
+        font-size: 1.3em;
+        /* 分區標題放大 */
+      }
+
+      input[type="number"] {
+        width: 100%;
+        /* 寬度適配行動裝置 */
+        font-size: 1.2em;
+        /* 提升輸入框文字大小 */
+      }
+
+      button {
+        font-size: 3em;
+        /* 提升按鈕文字大小 */
+        width: 200px;
+        padding: 12px 20px;
+        /* 增加按鈕點擊範圍 */
+      }
+
+      #result {
+        font-size: 2.5em;
+        /* 提示訊息文字放大 */
+      }
+    }
+  </style>
 
 </head>
+
 <body>
 
   <h1>優惠資格判斷</h1>
@@ -161,6 +177,19 @@
     </div>
   </div>
 
+  <!-- 是否自行接送 -->
+  <div class="radio-group">
+    <span>是否自行接送：</span>
+    <label>
+      <input type="radio" name="selfPickup_single" value="yes" checked>
+      是 (符合)
+    </label>
+    <label>
+      <input type="radio" name="selfPickup_single" value="no">
+      否 (不符合)
+    </label>
+  </div>
+
   <!-- 2. 優惠類型選擇：單次小美 / 包月 -->
   <div class="section">
     <div class="section-title">選擇優惠類型</div>
@@ -180,15 +209,15 @@
   <div id="singleForm" class="section">
     <div class="section-title">單次小美條件</div>
 
-    <!-- 是否提前3天預約 -->
+    <!-- 是否提前3個工作天預約 -->
     <div class="radio-group">
-      <span>是否提前3天預約：</span>
+      <span>是否提前3個工作天預約：</span>
       <label>
-        <input type="radio" name="daysBeforeAppointment_single" value="yes" checked>
+        <input type="radio" name="workDaysBeforeAppointment_single" value="yes" checked>
         是 (符合)
       </label>
       <label>
-        <input type="radio" name="daysBeforeAppointment_single" value="no">
+        <input type="radio" name="workDaysBeforeAppointment_single" value="no">
         否 (不符合)
       </label>
     </div>
@@ -219,16 +248,29 @@
       </label>
     </div>
 
-    <!-- 距離上次來店天數 -->
+    <!-- 距離上次來店日期 -->
     <div class="input-group">
-      <label for="daysSinceLastVisit_single">距離上次來店天數：</label>
-      <input type="number" id="daysSinceLastVisit_single" placeholder="請輸入天數" min="0" value="0">
+      <label for="lastVisitDate_single">距離上次來店日期：</label>
+      <input type="date" id="lastVisitDate_single">
     </div>
   </div>
 
   <!-- 4. 包月相關欄位 -->
   <div id="monthlyForm" class="section hidden">
     <div class="section-title">包月條件</div>
+
+    <!-- 是否自行接送 -->
+    <div class="radio-group">
+      <span>是否自行接送：</span>
+      <label>
+        <input type="radio" name="selfPickup_monthly" value="yes" checked>
+        是 (符合)
+      </label>
+      <label>
+        <input type="radio" name="selfPickup_monthly" value="no">
+        否 (不符合)
+      </label>
+    </div>
 
     <!-- 第一次預約成功且付款成功 -->
     <div class="radio-group">
@@ -239,6 +281,19 @@
       </label>
       <label>
         <input type="radio" name="firstBookingSuccess" value="no">
+        否 (不符合)
+      </label>
+    </div>
+
+    <!-- 不得與其他狗並用 -->
+    <div class="radio-group">
+      <span>包月不得與其他狗並用：</span>
+      <label>
+        <input type="radio" name="exclusiveUse_monthly" value="yes" checked>
+        是 (符合)
+      </label>
+      <label>
+        <input type="radio" name="exclusiveUse_monthly" value="no">
         否 (不符合)
       </label>
     </div>
@@ -269,10 +324,10 @@
       </label>
     </div>
 
-    <!-- 距離上次包月結束天數 -->
+    <!-- 距離上次包月結束日期 -->
     <div class="input-group">
-      <label for="daysSinceLastPackage">距離上次包月結束天數：</label>
-      <input type="number" id="daysSinceLastPackage" placeholder="請輸入天數" min="0" value="0">
+      <label for="lastPackageDate">距離上次包月結束日期：</label>
+      <input type="date" id="lastPackageDate">
     </div>
   </div>
 
@@ -300,14 +355,14 @@
         // 活動尚未開始
         activityStatusEl.textContent = "（活動尚未開始）";
         // 也可以選擇是否做不可編輯處理
-        disablePage(true); 
-      } 
+        disablePage(true);
+      }
       else if (now > endDate) {
         // 活動已經結束
         activityStatusEl.textContent = "（活動已結束）";
         // 設為唯讀/不可點擊
         disablePage(false);
-      } 
+      }
       else {
         // 活動進行中
         activityStatusEl.textContent = "（活動進行中）";
@@ -363,7 +418,7 @@
       console.log("開始檢查優惠資格...");
 
       // 1. 先確認新客或舊客
-      const customerType = document.querySelector('input[name="customerType"]:checked').value; 
+      const customerType = document.querySelector('input[name="customerType"]:checked').value;
       // new -> 新客, old -> 舊客
 
       // 2. 確認優惠類型
@@ -388,22 +443,30 @@
       if (discountType === "single") {
         //=== 檢查單次小美條件 ===
         console.log("檢查單次小美條件...");
-        const daysBeforeAppointment = document.querySelector('input[name="daysBeforeAppointment_single"]:checked').value;
+        const selfPickup = document.querySelector('input[name="selfPickup_single"]:checked').value;
+        const workDaysBeforeAppointment = document.querySelector('input[name="workDaysBeforeAppointment_single"]:checked').value;
         const deposit = document.querySelector('input[name="deposit_single"]:checked').value;
         const arriveOnTime = document.querySelector('input[name="arriveOnTime_single"]:checked').value;
-        const daysSinceLastVisit = parseInt(document.getElementById('daysSinceLastVisit_single').value, 10);
+        if (!document.getElementById('lastVisitDate_single').value) {
+          alert('請輸入最後一次來店日期');
+          return false;
+        }
+        const lastVisitDate = new Date(document.getElementById('lastVisitDate_single').value);
+        const daysBefore = calculateWorkingDays(lastVisitDate, new Date());
 
-        console.log("是否提前3天預約:", daysBeforeAppointment);
+        console.log("是否提前3天預約:", workDaysBeforeAppointment);
         console.log("是否預付30%訂金:", deposit);
         console.log("是否準時到店:", arriveOnTime);
-        console.log("距離上次來店天數:", daysSinceLastVisit);
+        console.log("距離上次來店日期:", lastVisitDate);
+        console.log("距離上次來店天數:", daysBefore);
 
         // 簡易判斷 (可依需求自行調整)
         if (
-          daysBeforeAppointment === "yes" &&
+          selfPickup === "yes" &&
+          workDaysBeforeAppointment === "yes" &&
           deposit === "yes" &&
           arriveOnTime === "yes" &&
-          daysSinceLastVisit <= 12
+          daysBefore <= 12
         ) {
           isQualified = true;
         } else {
@@ -419,22 +482,31 @@
       } else {
         //=== 檢查包月條件 ===
         console.log("檢查包月條件...");
-		const firstBookingSuccess = document.querySelector('input[name="firstBookingSuccess"]:checked').value;
+        const selfPickup = document.querySelector('input[name="selfPickup_monthly"]:checked').value;
+        const firstBookingSuccess = document.querySelector('input[name="firstBookingSuccess"]:checked').value;
         const timesUsed = document.querySelector('input[name="timesUsed"]:checked').value;
         const arriveOnTimeMonthly = document.querySelector('input[name="arriveOnTime_monthly"]:checked').value;
-        const daysSinceLastPackage = parseInt(document.getElementById('daysSinceLastPackage').value, 10);
+        if (!document.getElementById('lastPackageDate').value) {
+          alert('請輸入最後一次包月使用結束日期');
+          return false;
+        }
+        const lastPackageDate = new Date(document.getElementById('lastPackageDate').value);
+        const daysSinceLast = calculateWorkingDays(lastPackageDate, new Date());
+        console.log(lastPackageDate)
 
-		console.log("第一次預約成功且付款成功:", firstBookingSuccess);
+        console.log("第一次預約成功且付款成功:", firstBookingSuccess);
         console.log("35天內是否完成4次使用:", timesUsed);
         console.log("每次是否準時到店:", arriveOnTimeMonthly);
-        console.log("距離上次包月結束天數:", daysSinceLastPackage);
+        console.log("距離上次包月結束日期:", lastPackageDate);
+        console.log("距離上次包月結束天數:", daysSinceLast);
 
         // 簡易判斷 (可依需求自行調整)
         if (
-		  firstBookingSuccess === "yes" &&
+          selfPickup === "yes" &&
+          firstBookingSuccess === "yes" &&
           timesUsed === "yes" &&
           arriveOnTimeMonthly === "yes" &&
-          daysSinceLastPackage <= 20
+          daysSinceLast <= 20
         ) {
           isQualified = true;
         } else {
@@ -451,8 +523,29 @@
       //=== 顯示判斷結果 ===
       document.getElementById('result').textContent = resultText;
       console.log("檢查結束:", resultText);
+
+
+      // 計算天數
+      function calculateWorkingDays(startDate, endDate) {
+        console.log("Calculating working days");
+        let count = 0;
+        let currentDate = new Date(startDate);
+
+        // 不包含今天
+        while (currentDate < endDate) {
+          const day = currentDate.getDay();
+          // if (day !== 0 && day !== 6 && day !== 1 && day !== 2) { // 排除周末和週一、週二
+          //   count++;
+          // }        
+          count++;
+          currentDate.setDate(currentDate.getDate() + 1);
+        }
+        return count;
+      }
+
     }
   </script>
 
 </body>
+
 </html>
