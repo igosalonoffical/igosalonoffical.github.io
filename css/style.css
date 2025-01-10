@@ -4,7 +4,19 @@ body {
   min-height: 100vh;
 }
 
+header {
+  position: fixed; /* 固定在頁面頂部 */
+  top: 0; /* 距離頂部 0 */
+  left: 0; /* 距離左側 0 */
+  width: 100%; /* 寬度填滿視窗 */
+  z-index: 1000; /* 確保層級高於其他元素 */
+  background-color: #1f2937; /* 背景色，確保滾動時背景一致 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */
+}
+
+
 main {
+  margin-top: 64px; /* 預留與 header 高度相同的空間 */
   flex-grow: 1; /* 撐滿剩餘空間 */
 }
 
