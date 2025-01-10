@@ -75,15 +75,34 @@ button#nextSlide {
 /** petservices */
 #scrollContainer {
   display: flex;
-  gap: 16px; /* 卡片間距 */
+  gap: 16px; /* 卡片之間的間距 */
   overflow-x: auto; /* 允許水平滾動 */
-  scroll-behavior: smooth; /* 平滑滾動效果 */
-  padding-bottom: 1rem; /* 避免滾動條太靠近內容 */
+  scroll-behavior: smooth; /* 滾動時平滑過渡 */
+  padding-bottom: 1rem; /* 與滾動條保持距離 */
+  align-items: center; /* 保證卡片內容垂直居中 */
 }
 
 .flex-none {
+  display: flex;
+  flex-direction: column; /* 將內容從上到下排列 */
+  align-items: center; /* 水平置中 */
+  text-align: center; /* 文字置中對齊 */
   flex-shrink: 0;
   width: calc(50% - 16px); /* 每張卡片占容器寬度的一半（含間距） */
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 8px;
+}
+
+.flex-none img {
+  width: auto; /* 圖片寬度占滿容器 */
+  max-height: 200px;
+  height: auto; /* 自適應高度，保持比例 */
+  object-fit: contain; /* 圖片完整顯示 */
+  border-radius: 8px; /* 保持現有圓角效果 */
+  margin-bottom: 16px; /* 與文字保持適當間距 */
 }
 
 button#prevSlide,

@@ -1,1 +1,2 @@
 npx tailwindcss -i ./libs/src/tailwind.css -o ./libs/tailwindcss/tailwind.css --watch
+npm run dev

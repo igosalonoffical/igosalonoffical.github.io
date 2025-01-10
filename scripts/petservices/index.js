@@ -18,9 +18,11 @@ console.log('服務');
 
     // 更新滾動位置的函數
     const updateScrollPosition = () => {
+        // 獲取當前每張卡片的寬度（包含間距）
+        const cardWidth = scrollContainer.querySelector('.flex-none').offsetWidth;
         scrollContainer.scrollTo({
-            left: currentIndex * cardWidth, // 設定內部的 scrollLeft
-            behavior: 'smooth', // 平滑滾動
+            left: currentIndex * cardWidth, // 設定 scrollLeft
+            behavior: 'smooth', // 平滑滾動效果
         });
     };
 
@@ -38,6 +40,11 @@ console.log('服務');
             currentIndex += visibleCards; // 每次移動顯示兩張卡片
             updateScrollPosition();
         }
+    });
+
+    // 監聽視窗調整大小事件，重新計算卡片寬度
+    window.addEventListener('resize', () => {
+        updateScrollPosition(); // 視窗大小改變時重新定位
     });
 
     // 自動滾動
