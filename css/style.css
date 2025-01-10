@@ -5,102 +5,223 @@ body {
 }
 
 header {
-  position: fixed; /* 固定在頁面頂部 */
-  top: 0; /* 距離頂部 0 */
-  left: 0; /* 距離左側 0 */
-  width: 100%; /* 寬度填滿視窗 */
-  z-index: 1000; /* 確保層級高於其他元素 */
-  background-color: #1f2937; /* 背景色，確保滾動時背景一致 */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */
+  position: fixed;
+  /* 固定在頁面頂部 */
+  top: 0;
+  /* 距離頂部 0 */
+  left: 0;
+  /* 距離左側 0 */
+  width: 100%;
+  /* 寬度填滿視窗 */
+  z-index: 1000;
+  /* 確保層級高於其他元素 */
+  background-color: #1f2937;
+  /* 背景色，確保滾動時背景一致 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* 添加陰影效果 */
 }
 
 
 main {
-  margin-top: 64px; /* 預留與 header 高度相同的空間 */
-  flex-grow: 1; /* 撐滿剩餘空間 */
+  margin-top: 64px;
+  /* 預留與 header 高度相同的空間 */
+  flex-grow: 1;
+  /* 撐滿剩餘空間 */
 }
 
 /** layout */
 .logo {
-  border-radius: 50%; /* 讓圖片變成圓形 */
-  vertical-align: middle; /* 垂直置中對齊 */
-  object-fit: cover; /* 確保圖片完整顯示 */
-  transition: transform 0.2s ease; /* 懸停動畫效果 */
+  border-radius: 50%;
+  /* 讓圖片變成圓形 */
+  vertical-align: middle;
+  /* 垂直置中對齊 */
+  object-fit: cover;
+  /* 確保圖片完整顯示 */
+  transition: transform 0.2s ease;
+  /* 懸停動畫效果 */
 }
 
 /* 懸停效果 */
 .logo:hover {
-  transform: scale(1.1); /* 放大效果 */
+  transform: scale(1.1);
+  /* 放大效果 */
 }
 
 /** home */
+.reserve-btn {
+  pointer-events: auto;
+  /* 允許按鈕接收點擊事件 */
+  z-index: 10;
+  /* 確保按鈕位於上方 */
+
+  background-color: #ff5252;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reserve-btn:hover {
+  background-color: #d44;
+}
+
+img {
+  border-radius: 8px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  /* 設定固定高度，避免因內容變化導致箭頭位置錯誤 */
+  /* overflow: hidden; */
+}
+
 .carousel-item img {
   height: 400px;
   width: auto;
-  object-fit: cover; /* 如果圖片需要裁切，可以改用 cover */
-  margin: 0 auto; /* 置中 */
-  display: block; /* 將圖片設定為區塊級元素以配合 margin */
+  object-fit: cover;
+  /* 如果圖片需要裁切，可以改用 cover */
+  margin: 0 auto;
+  /* 置中 */
+  display: block;
+  /* 將圖片設定為區塊級元素以配合 margin */
 }
 
 .carousel-inner {
   position: relative;
-  pointer-events: none; /* 禁止事件攔截 */
+  width: 100%;
+  height: 100%;
 }
 
-.carousel-inner img {
-  pointer-events: auto; /* 圖片仍可點擊 */
+.carousel-inner img,
+.carousel-inner .custom-div {
+  pointer-events: auto;
+}
+
+/* .carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 10px;
+  border-radius: 50%;
+} */
+
+.custom-div {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* custom-div 內的圖片特殊處理 */
+.custom-div img {
+  position: relative;
+  width: auto;
+  height: 100px;
+  /* 讓圖片可以突破 carousel 的限制 */
+  z-index: 1;
+  /* 確保圖片在其他元素之上 */
+  /* overflow: visible; */
+  /* 允許內容超出容器 */
+}
+
+.custom-div img:hover {
+  height: auto;
+  width: 300px;
+  transform: scale(1.8) !important;
+}
+
+.custom-div h2 {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.custom-div p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.custom-div .reserve-btn {
+  position: relative;
+  z-index: 10;
 }
 
 button#prevSlide,
 button#nextSlide {
   position: absolute;
-  z-index: 10; /* 確保按鈕位於圖片上方 */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
   border-radius: 50%;
   cursor: pointer;
 }
 
+#prevSlide {
+  left: 10px;
+}
+
+#nextSlide {
+  right: 10px;
+}
+
 button#prevSlide:hover,
 button#nextSlide:hover {
-  background-color: rgba(0, 0, 0, 0.8); /* 滑鼠懸停效果 */
-}
-
-button#prevSlide {
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-button#nextSlide {
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 /** petservices */
 #scrollContainer {
   display: flex;
-  gap: 16px; /* 卡片之間的間距 */
-  overflow-x: auto; /* 允許水平滾動 */
-  scroll-behavior: smooth; /* 滾動時平滑過渡 */
-  padding-bottom: 1rem; /* 與滾動條保持距離 */
-  align-items: center; /* 保證卡片內容垂直居中 */
+  gap: 16px;
+  /* 卡片之間的間距 */
+  overflow-x: auto;
+  /* 允許水平滾動 */
+  scroll-behavior: smooth;
+  /* 滾動時平滑過渡 */
+  padding-bottom: 1rem;
+  /* 與滾動條保持距離 */
+  align-items: center;
+  /* 保證卡片內容垂直居中 */
 }
 
 .flex-none {
   display: flex;
-  flex-direction: column; /* 將內容從上到下排列 */
-  align-items: center; /* 水平置中 */
-  text-align: center; /* 文字置中對齊 */
+  flex-direction: column;
+  /* 將內容從上到下排列 */
+  align-items: center;
+  /* 水平置中 */
+  text-align: center;
+  /* 文字置中對齊 */
   flex-shrink: 0;
-  width: calc(50% - 16px); /* 每張卡片占容器寬度的一半（含間距） */
+  width: calc(50% - 16px);
+  /* 每張卡片占容器寬度的一半（含間距） */
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -109,12 +230,17 @@ button#nextSlide {
 }
 
 .flex-none img {
-  width: auto; /* 圖片寬度占滿容器 */
+  width: auto;
+  /* 圖片寬度占滿容器 */
   max-height: 200px;
-  height: auto; /* 自適應高度，保持比例 */
-  object-fit: contain; /* 圖片完整顯示 */
-  border-radius: 8px; /* 保持現有圓角效果 */
-  margin-bottom: 16px; /* 與文字保持適當間距 */
+  height: auto;
+  /* 自適應高度，保持比例 */
+  object-fit: contain;
+  /* 圖片完整顯示 */
+  border-radius: 8px;
+  /* 保持現有圓角效果 */
+  margin-bottom: 16px;
+  /* 與文字保持適當間距 */
 }
 
 button#prevSlide,
@@ -141,18 +267,21 @@ button#nextSlide:hover {
 
 /* 按鈕基礎樣式 */
 button#openModal {
-  font-size: 1rem; /* 字體大小 */
+  font-size: 1rem;
+  /* 字體大小 */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* 按鈕懸停樣式 */
 button#openModal:hover {
-  transform: scale(1.05); /* 放大效果 */
+  transform: scale(1.05);
+  /* 放大效果 */
 }
 
 /* 增加按鈕與段落的間距 */
 .text-center.mb-10 {
-  margin-top: 0.5rem; /* 可根據需求調整間距 */
+  margin-top: 0.5rem;
+  /* 可根據需求調整間距 */
 }
 
 /* Modal 顯示與隱藏效果 */
@@ -186,7 +315,8 @@ button#openModal:hover {
 }
 
 .flex img:hover {
-  transform: scale(1.1); /* 懸停時放大效果 */
+  transform: scale(1.1);
+  /* 懸停時放大效果 */
 }
 
 /* Google Maps 外框樣式 */
@@ -219,7 +349,8 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-  background-color: #f0f8ff; /* 懸停效果 */
+  background-color: #f0f8ff;
+  /* 懸停效果 */
 }
 
 /* 狀態標籤樣式 */
@@ -231,16 +362,19 @@ tbody tr:hover {
 }
 
 .status.not-started {
-  background-color: #fbbf24; /* 黃色 */
+  background-color: #fbbf24;
+  /* 黃色 */
   color: #fff;
 }
 
 .status.in-progress {
-  background-color: #34d399; /* 綠色 */
+  background-color: #34d399;
+  /* 綠色 */
   color: #fff;
 }
 
 .status.ended {
-  background-color: #ef4444; /* 紅色 */
+  background-color: #ef4444;
+  /* 紅色 */
   color: #fff;
 }
