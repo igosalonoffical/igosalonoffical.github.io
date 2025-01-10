@@ -3,338 +3,381 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>優惠資格判斷</title>
   <style>
+    :root {
+      --primary-color: #5cb85c;
+      --border-color: #ddd;
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --error-color: #d44;
+    }
+
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-size: 1.2em;
-      line-height: 1.2;
-      /* 增加行距，提升可讀性 */
-      margin: 20px;
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      line-height: 1.5;
+      color: var(--text-color);
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
-      margin-bottom: 10px;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      text-align: center;
     }
 
     .section {
-      font-size: 1.5em;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      padding: 15px;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
       border-radius: 8px;
-      background-color: #f9f9f9;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .section-title {
+      font-size: 1.2rem;
       font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
     }
 
-    .radio-group,
-    .input-group {
-      margin-bottom: 10px;
+    .form-group {
+      margin-bottom: 1rem;
     }
 
-    .radio-group label,
-    .input-group label {
-      display: inline-block;
-      margin-right: 10px;
-      vertical-align: middle;
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
 
-    .radio-group input[type="radio"] {
-      margin-right: 4px;
-      vertical-align: middle;
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
     }
 
-    input[type="number"] {
-      width: 100px;
-      padding: 4px;
-      margin-left: 5px;
-      margin-right: 10px;
+    input[type="radio"] {
+      margin-right: 0.5rem;
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 1rem;
     }
 
     button {
-      padding: 8px 16px;
-      font-size: 2rem;
-      cursor: pointer;
+      background: var(--primary-color);
+      color: white;
       border: none;
-      border-radius: 4px;
-      background-color: #5cb85c;
-      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 100%;
+      max-width: 400px;
+      margin: 1.5rem auto;
+      display: block;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #4a994a;
     }
 
     #result {
-      font-size: 2em;
-      margin-top: 20px;
+      text-align: center;
+      font-size: 1.2rem;
       font-weight: bold;
-      color: #d44;
+      color: var(--error-color);
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .activity-dates {
+      text-align: center;
+      margin: 1rem 0;
+      padding: 0.8rem;
+      background: #fff;
+      border-radius: 8px;
+      font-weight: bold;
     }
 
     .hidden {
       display: none;
     }
 
-    /* 使整頁灰階呈現、指標無法操作的簡易效果，可自行調整 */
-    .disabled-page {
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    /* 活動日期資訊 */
-    .activity-dates {
-      margin: 10px 0;
-      font-weight: bold;
-      color: #333;
-    }
-
-    #activityStatus {
-      color: #d44;
-      font-weight: bold;
-      margin-left: 10px;
-    }
-
-    /* 響應式設計 */
-    @media screen and (max-width: 800px) {
+    /* 手機版樣式 */
+    @media screen and (max-width: 768px) {
       body {
-        font-size: 1.4em;
-        /* 行動裝置全局文字放大 */
-        line-height: 2;
-        /* 提升行距，便於閱讀 */
         padding: 10px;
-        /* 縮小邊距，適配小螢幕 */
+        font-size: 16px;
+      }
+
+      .container {
+        padding: 16px;
       }
 
       h1 {
-        font-size: 2em;
-        /* 標題文字放大 */
+        font-size: 1.5rem;
       }
 
       .section {
-        font-size: 1.2em;
-        /* 區塊文字適配 */
-        padding: 20px;
-        /* 增加內距 */
+        padding: 1rem;
       }
 
-      .section-title {
-        font-size: 1.3em;
-        /* 分區標題放大 */
+      .radio-group {
+        flex-direction: column;
+        gap: 0.8rem;
       }
 
-      input[type="number"] {
-        width: 100%;
-        /* 寬度適配行動裝置 */
-        font-size: 1.2em;
-        /* 提升輸入框文字大小 */
+      .radio-group label {
+        padding: 0.5rem 0;
+      }
+
+      input[type="radio"] {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+
+      input[type="date"] {
+        padding: 1rem;
+        font-size: 1.1rem;
       }
 
       button {
-        font-size: 3em;
-        /* 提升按鈕文字大小 */
-        width: 200px;
-        padding: 12px 20px;
-        /* 增加按鈕點擊範圍 */
+        padding: 1.2rem;
+        font-size: 1.3rem;
+        margin: 1rem auto;
       }
 
       #result {
-        font-size: 2.5em;
-        /* 提示訊息文字放大 */
+        font-size: 1.3rem;
+        padding: 1.2rem;
+      }
+
+      .section-title {
+        font-size: 1.1rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.2rem;
       }
     }
   </style>
-
 </head>
 
 <body>
+  <div class="container">
+    <h1>優惠資格判斷</h1>
 
-  <h1>優惠資格判斷</h1>
+    <div class="activity-dates">
+      活動時間：2025/02/04 ~ 2025/03/31
+      <span id="activityStatus"></span>
+    </div>
 
-  <!-- 活動時間顯示 -->
-  <div class="activity-dates">
-    活動時間：2025/02/04 ~ 2025/03/31
-    <span id="activityStatus"></span>
+    <div class="section">
+      <div class="section-title">客戶屬性</div>
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="customerType" value="new" checked>
+          新客
+        </label>
+        <label>
+          <input type="radio" name="customerType" value="old">
+          舊客
+        </label>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">選擇優惠類型</div>
+      <div class="radio-group">
+        <label>
+          <input type="radio" id="type_single" name="discountType" value="single" checked>
+          單次小美
+        </label>
+        <label>
+          <input type="radio" id="type_monthly" name="discountType" value="monthly">
+          包月
+        </label>
+      </div>
+    </div>
+
+    <div id="singleForm" class="section">
+      <div class="section-title">單次小美條件</div>
+
+      <div class="form-group">
+        <div class="radio-group">
+          <span>是否自行接送：</span>
+          <label>
+            <input type="radio" name="selfPickup_single" value="yes" checked>
+            是 (符合)
+          </label>
+          <label>
+            <input type="radio" name="selfPickup_single" value="no">
+            否 (不符合)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="radio-group">
+          <span>是否提前3個工作天預約：</span>
+          <label>
+            <input type="radio" name="workDaysBeforeAppointment_single" value="yes" checked>
+            是 (符合)
+          </label>
+          <label>
+            <input type="radio" name="workDaysBeforeAppointment_single" value="no">
+            否 (不符合)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="radio-group">
+          <span>是否已預付30%訂金：</span>
+          <label>
+            <input type="radio" name="deposit_single" value="yes" checked>
+            是 (已付)
+          </label>
+          <label>
+            <input type="radio" name="deposit_single" value="no">
+            否 (未付)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="radio-group">
+          <span>是否提前或準時到店：</span>
+          <label>
+            <input type="radio" name="arriveOnTime_single" value="yes" checked>
+            是 (符合)
+          </label>
+          <label>
+            <input type="radio" name="arriveOnTime_single" value="no">
+            否 (不符合)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastVisitDate_single">距離上次來店日期：</label>
+        <input type="date" id="lastVisitDate_single">
+      </div>
+    </div>
+
+    <div id="monthlyForm" class="section hidden">
+      <div class="section-title">包月條件</div>
+
+      <div class="form-group">
+        <div class="radio-group">
+          <span>是否自行接送：</span>
+          <label>
+            <input type="radio" name="selfPickup_monthly" value="yes" checked>
+            是 (符合)
+          </label>
+          <label>
+            <input type="radio" name="selfPickup_monthly" value="no">
+            否 (不符合)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="radio-group">
+          <span>第一次預約成功且付款成功：</span>
+          <label>
+            <input type="radio" name="firstBookingSuccess" value="yes" checked>
+            是 (符合)
+          </label>
+          <label>
+            <input type="radio" name="firstBookingSuccess" value="no">
+            否 (不符合)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="radio-group">
+          <span>包月不得與其他狗並用：</span>
+          <label>
+            <input type="radio" name="exclusiveUse_monthly" value="yes" checked>
+            是 (符合)
+          </label>
+          <label>
+            <input type="radio" name="exclusiveUse_monthly" value="no">
+            否 (不符合)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="radio-group">
+          <span>35天內是否完成4次使用：</span>
+          <label>
+            <input type="radio" name="timesUsed" value="yes" checked>
+            是 (已完成)
+          </label>
+          <label>
+            <input type="radio" name="timesUsed" value="no">
+            否 (未完成)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="radio-group">
+          <span>每次都提前或準時到店：</span>
+          <label>
+            <input type="radio" name="arriveOnTime_monthly" value="yes" checked>
+            是 (符合)
+          </label>
+          <label>
+            <input type="radio" name="arriveOnTime_monthly" value="no">
+            否 (不符合)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastPackageDate">距離上次包月結束日期：</label>
+        <input type="date" id="lastPackageDate">
+      </div>
+    </div>
+
+    <button id="checkButton" onclick="checkDiscount()">檢查優惠資格</button>
+    <div id="result"></div>
   </div>
-
-  <!-- 1. 客戶屬性：新客 / 舊客 -->
-  <div class="section">
-    <div class="section-title">客戶屬性</div>
-    <div class="radio-group">
-      <label>
-        <input type="radio" name="customerType" value="new" checked>
-        新客
-      </label>
-      <label>
-        <input type="radio" name="customerType" value="old">
-        舊客
-      </label>
-    </div>
-  </div>
-
-  <!-- 是否自行接送 -->
-  <div class="radio-group">
-    <span>是否自行接送：</span>
-    <label>
-      <input type="radio" name="selfPickup_single" value="yes" checked>
-      是 (符合)
-    </label>
-    <label>
-      <input type="radio" name="selfPickup_single" value="no">
-      否 (不符合)
-    </label>
-  </div>
-
-  <!-- 2. 優惠類型選擇：單次小美 / 包月 -->
-  <div class="section">
-    <div class="section-title">選擇優惠類型</div>
-    <div class="radio-group">
-      <label for="type_single">
-        <input type="radio" id="type_single" name="discountType" value="single" checked>
-        單次小美
-      </label>
-      <label for="type_monthly">
-        <input type="radio" id="type_monthly" name="discountType" value="monthly">
-        包月
-      </label>
-    </div>
-  </div>
-
-  <!-- 3. 單次小美相關欄位 -->
-  <div id="singleForm" class="section">
-    <div class="section-title">單次小美條件</div>
-
-    <!-- 是否提前3個工作天預約 -->
-    <div class="radio-group">
-      <span>是否提前3個工作天預約：</span>
-      <label>
-        <input type="radio" name="workDaysBeforeAppointment_single" value="yes" checked>
-        是 (符合)
-      </label>
-      <label>
-        <input type="radio" name="workDaysBeforeAppointment_single" value="no">
-        否 (不符合)
-      </label>
-    </div>
-
-    <!-- 是否已預付30%訂金 -->
-    <div class="radio-group">
-      <span>是否已預付30%訂金：</span>
-      <label>
-        <input type="radio" name="deposit_single" value="yes" checked>
-        是 (已付)
-      </label>
-      <label>
-        <input type="radio" name="deposit_single" value="no">
-        否 (未付)
-      </label>
-    </div>
-
-    <!-- 是否提前或準時到店 -->
-    <div class="radio-group">
-      <span>是否提前或準時到店：</span>
-      <label>
-        <input type="radio" name="arriveOnTime_single" value="yes" checked>
-        是 (符合)
-      </label>
-      <label>
-        <input type="radio" name="arriveOnTime_single" value="no">
-        否 (不符合)
-      </label>
-    </div>
-
-    <!-- 距離上次來店日期 -->
-    <div class="input-group">
-      <label for="lastVisitDate_single">距離上次來店日期：</label>
-      <input type="date" id="lastVisitDate_single">
-    </div>
-  </div>
-
-  <!-- 4. 包月相關欄位 -->
-  <div id="monthlyForm" class="section hidden">
-    <div class="section-title">包月條件</div>
-
-    <!-- 是否自行接送 -->
-    <div class="radio-group">
-      <span>是否自行接送：</span>
-      <label>
-        <input type="radio" name="selfPickup_monthly" value="yes" checked>
-        是 (符合)
-      </label>
-      <label>
-        <input type="radio" name="selfPickup_monthly" value="no">
-        否 (不符合)
-      </label>
-    </div>
-
-    <!-- 第一次預約成功且付款成功 -->
-    <div class="radio-group">
-      <span>第一次預約成功且付款成功：</span>
-      <label>
-        <input type="radio" name="firstBookingSuccess" value="yes" checked>
-        是 (符合)
-      </label>
-      <label>
-        <input type="radio" name="firstBookingSuccess" value="no">
-        否 (不符合)
-      </label>
-    </div>
-
-    <!-- 不得與其他狗並用 -->
-    <div class="radio-group">
-      <span>包月不得與其他狗並用：</span>
-      <label>
-        <input type="radio" name="exclusiveUse_monthly" value="yes" checked>
-        是 (符合)
-      </label>
-      <label>
-        <input type="radio" name="exclusiveUse_monthly" value="no">
-        否 (不符合)
-      </label>
-    </div>
-
-    <!-- 35天內是否完成4次使用 -->
-    <div class="radio-group">
-      <span>35天內是否完成4次使用：</span>
-      <label>
-        <input type="radio" name="timesUsed" value="yes" checked>
-        是 (已完成)
-      </label>
-      <label>
-        <input type="radio" name="timesUsed" value="no">
-        否 (未完成)
-      </label>
-    </div>
-
-    <!-- 每次都提前或準時到店 -->
-    <div class="radio-group">
-      <span>每次都提前或準時到店：</span>
-      <label>
-        <input type="radio" name="arriveOnTime_monthly" value="yes" checked>
-        是 (符合)
-      </label>
-      <label>
-        <input type="radio" name="arriveOnTime_monthly" value="no">
-        否 (不符合)
-      </label>
-    </div>
-
-    <!-- 距離上次包月結束日期 -->
-    <div class="input-group">
-      <label for="lastPackageDate">距離上次包月結束日期：</label>
-      <input type="date" id="lastPackageDate">
-    </div>
-  </div>
-
-  <!-- 5. 檢查結果 -->
-  <button id="checkButton" onclick="checkDiscount()">檢查優惠資格</button>
-  <div id="result"></div>
-
+  
   <script>
     //=== 活動日期設定 ===
     const startDate = new Date("2025-01-08T00:00:00");
