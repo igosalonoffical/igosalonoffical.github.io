@@ -30,34 +30,62 @@ main {
   /* 撐滿剩餘空間 */
 }
 
-/* 隱藏菜單的基礎樣式 */
-.hidden {
-  display: none;
+/* 桌面版菜單顯示 */
+nav.md\\:flex {
+  display: flex !important; /* 強制在桌面顯示 */
 }
 
-/* 菜單初始樣式 */
+/* 桌面版文字樣式 */
+nav a {
+  color: white; /* 確保文字顏色可見 */
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+nav a:hover {
+  color: #fbbf24; /* 滑鼠懸停時的黃色 */
+}
+
+/* 手機版菜單樣式 */
 #mobileMenu {
+  display: none; /* 預設隱藏 */
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 64px; /* 菜單距離頂部 64px（header 高度） */
+  left: 50%;
+  transform: translateX(-50%); /* 水平置中 */
+  width: 90%; /* 菜單寬度為視窗的 90% */
+  max-width: 400px; /* 最大寬度限制 */
   background-color: rgba(31, 41, 55, 1); /* 深灰背景 */
-  z-index: 50; /* 保證高於 header */
-  display: none; /* 默認隱藏 */
+  border-radius: 12px; /* 圓角 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* 添加陰影 */
+  z-index: 50; /* 保證高於其他內容 */
 }
 
-/* 菜單項目樣式 */
+/* 菜單內部連結樣式 */
 #mobileMenu a {
   display: block;
-  padding: 1rem;
+  padding: 12px;
   color: white;
-  text-align: left;
+  text-align: center;
   text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
 #mobileMenu a:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* 懸停背景變亮 */
+  background-color: rgba(255, 255, 255, 0.1); /* 懸停時背景微亮 */
 }
+
+/* 顯示菜單 */
+#mobileMenu:not(.hidden) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 
 /** layout */
 .logo {

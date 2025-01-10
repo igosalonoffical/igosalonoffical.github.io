@@ -2,27 +2,24 @@ const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 
 // 菜單按鈕點擊事件
-menuToggle.addEventListener('click', function (event) {
-  // 切換顯示/隱藏
-  if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
-    mobileMenu.style.display = 'block';
-  } else {
-    mobileMenu.style.display = 'none';
-  }
-  event.stopPropagation(); // 阻止事件冒泡，避免觸發背景點擊事件
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
 });
 
-// 點擊背景關閉菜單
-document.addEventListener('click', function () {
-  if (mobileMenu.style.display === 'block') {
-    mobileMenu.style.display = 'none'; // 隱藏菜單
+// 點擊背景遮罩時關閉菜單
+mobileMenu.addEventListener('click', (event) => {
+  if (event.target === mobileMenu) {
+    mobileMenu.classList.add('hidden'); // 隱藏菜單
+  } else if (event.target.tagName == 'A') {
+    mobileMenu.classList.add('hidden');
   }
 });
 
-// 點擊菜單項目自動關閉菜單
-document.querySelectorAll('#mobileMenu a').forEach((item) => {
-  item.addEventListener('click', function (event) {
-    mobileMenu.style.display = 'none'; // 隱藏菜單
-    event.stopPropagation(); // 阻止事件冒泡，避免觸發背景點擊事件
-  });
+document.body.addEventListener('click', (event) => {
+  if (mobileMenu.classList.contains('hidden') == false) {
+    if (event.target !== menuToggle && event.target !== mobileMenu) {
+      mobileMenu.classList.add('hidden'); // 隱藏菜單
+    }
+  }
+
 });
