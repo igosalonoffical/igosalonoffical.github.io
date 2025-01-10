@@ -10,7 +10,7 @@
 
     <!-- 服務頁面 -->
     <url>
-        <loc>https://igopetservice.com.tw/petservices/</loc>
+        <loc>https://igopetservice.com.tw/index?view=petservices</loc>
         <lastmod>2025-01-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -18,23 +18,23 @@
 
     <!-- 文章 -->
     <url>
-        <loc>https://igopetservice.com.tw/posts/</loc>
+        <loc>https://igopetservice.com.tw/index?view=posts</loc>
         <lastmod>2025-01-09</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
+        <priority>0.3</priority>
     </url>
 
     <!-- 活動查詢 -->
     <url>
-        <loc>https://igopetservice.com.tw/activity/</loc>
+        <loc>https://igopetservice.com.tw/index?view=activity</loc>
         <lastmod>2025-01-09</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
 
     <!-- 作品集 -->
     <url>
-        <loc>https://igopetservice.com.tw/portfolio/</loc>
+        <loc>https://igopetservice.com.tw/index?view=portfolio</loc>
         <lastmod>2025-01-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -42,9 +42,9 @@
 
     <!-- 聯絡我們 -->
     <url>
-        <loc>https://igopetservice.com.tw/contact/</loc>
+        <loc>https://igopetservice.com.tw/index?view=contact</loc>
         <lastmod>2025-01-09</lastmod>
         <changefreq>yearly</changefreq>
-        <priority>0.3</priority>
+        <priority>0.6</priority>
     </url>
 </urlset>
