@@ -10,8 +10,7 @@ document.title = `內部活動查詢系統`;
 
   // 從 Google Apps Script 獲取數據
   const fetchActivityData = async () => {
-    const url = 'https://script.google.com/macros/s/AKfycbxEat5K6evMzPEw20b3SmMk5o6cVa9HbHkzjn16-Uknew54je8FHFUx6EY-pBsQQHx7YQ/exec'; // 替換為你的 Web App URL
-    const response = await fetch(url);
+    const response = await fetch(getGSUrl() + '?action=getActivities');
     if (!response.ok) {
       throw new Error('無法獲取活動數據');
     }

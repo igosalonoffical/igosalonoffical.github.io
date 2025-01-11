@@ -8,9 +8,9 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
   const today = new Date();
 
   // 從 Google Apps Script 獲取數據
+
   const fetchActivityData = async () => {
-    const url = 'https://script.google.com/macros/s/AKfycbxEat5K6evMzPEw20b3SmMk5o6cVa9HbHkzjn16-Uknew54je8FHFUx6EY-pBsQQHx7YQ/exec'; // 替換為你的 Web App URL
-    const response = await fetch(url);
+    const response = await fetch(getGSUrl() + '?action=getActivities');
     if (!response.ok) {
       throw new Error('無法獲取活動數據');
     }
@@ -40,14 +40,16 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
       const name = activity['活動名稱'];
       const startDate = activity['起日'];
       const endDate = activity['迄日'];
-      const link = activity['詳細連結']
+      const link = today >= new Date(startDate) && today <= new Date(endDate)
         ? activity['詳細連結']
-        : `/activity/edmlayout?view=${id.toLowerCase()}`; // 如果有詳細連結，則使用該連結，否則使用動態生成的連結
+          ? activity['詳細連結']
+          : `/activity/edmlayout?view=${id.toLowerCase()}`
+        : null;
 
       const row = document.createElement('tr');
       row.innerHTML = `
           <td class="border border-gray-300 px-4 py-2">
-              <a href="${link}" class="text-blue-500 hover:underline">詳細</a>
+               <a href="${link}" class="text-blue-500 hover:underline">${link ? '詳細' : ''}</a>
           </td>
           <td class="border border-gray-300 px-4 py-2">${id}</td>
           <td class="border border-gray-300 px-4 py-2">${name}</td>
