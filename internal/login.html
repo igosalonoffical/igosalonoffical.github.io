@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,8 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden; /* 禁止滾動 */
+      overflow: hidden;
+      /* 禁止滾動 */
       background-color: #f0f0f0;
     }
 
@@ -47,7 +49,8 @@
       color: #555;
     }
 
-    input[type="text"], input[type="password"] {
+    input[type="text"],
+    input[type="password"] {
       width: 100%;
       padding: 12px;
       font-size: 1rem;
@@ -76,12 +79,15 @@
         font-size: 1.5rem;
       }
 
-      label, input, button {
+      label,
+      input,
+      button {
         font-size: 1.5rem;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>愛狗內部系統登入</h1>
@@ -95,5 +101,11 @@
   </div>
   <script src="/scripts/common.js"></script>
   <script src="login.js"></script>
+  <script>
+    if (sessionStorage.getItem('auth')) {
+      window.location.href = '/internal/activitycheck/index'; // 跳轉回登入頁
+    } 
+  </script>
 </body>
+
 </html>
