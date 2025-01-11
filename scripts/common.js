@@ -1,5 +1,5 @@
 function getGSUrl() {
-  return 'https://script.google.com/macros/s/AKfycbzXa7grwrVEyEcI7NwosxzNalgm34ANBmrI4zSpFyqJ_paWlAiPv7B_IvjekgmNxDfO/exec';
+  return 'https://script.google.com/macros/s/AKfycbwM_-jODKqveT2jiu1Uk2LTPjxmazoOIFnn3viFcHG8wQscRZ01rGQyVkhbxXP0Vdii/exec';
 }
 
 const menuToggle = document.getElementById('menuToggle');

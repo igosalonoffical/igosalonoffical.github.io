@@ -2,7 +2,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault(); // 防止表單刷新
 
   const username = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value.trim();
+  const password = document.getElementById('password').value;
 
   try {
     // 假設使用 Base64 進行簡單加密
