@@ -202,31 +202,21 @@
       <span id="activityStatus"></span>
     </div>
 
+    <!-- 客戶屬性 -->
     <div class="section">
       <div class="section-title">客戶屬性</div>
       <div class="radio-group">
-        <label>
-          <input type="radio" name="customerType" value="new" checked>
-          新客
-        </label>
-        <label>
-          <input type="radio" name="customerType" value="old">
-          舊客
-        </label>
+        <label><input type="radio" name="customerType" value="new" checked> 新客</label>
+        <label><input type="radio" name="customerType" value="old"> 舊客</label>
       </div>
     </div>
 
+    <!-- 優惠類型 -->
     <div class="section">
       <div class="section-title">選擇優惠類型</div>
       <div class="radio-group">
-        <label>
-          <input type="radio" id="type_single" name="discountType" value="single" checked>
-          單次小美
-        </label>
-        <label>
-          <input type="radio" id="type_monthly" name="discountType" value="monthly">
-          包月
-        </label>
+        <label><input type="radio" id="type_single" name="discountType" value="single" checked> 單次小美</label>
+        <label><input type="radio" id="type_monthly" name="discountType" value="monthly"> 包月服務</label>
       </div>
     </div>
 
@@ -298,89 +288,61 @@
     <div id="monthlyForm" class="section hidden">
       <div class="section-title">包月條件</div>
 
-      <div class="form-group">
+      <!-- 包月條件檢查 -->
+      <div class="section">
+        <div class="section-title">包月條件檢查</div>
+
+        <!-- 上次包月結束日期 -->
         <div class="radio-group">
-          <span>是否自行接送：</span>
-          <label>
-            <input type="radio" name="selfPickup_monthly" value="yes" checked>
-            是 (符合)
-          </label>
-          <label>
-            <input type="radio" name="selfPickup_monthly" value="no">
-            否 (不符合)
+          <label>上次包月結束日期：
+            <input type="date" id="lastPackageEndDate">
           </label>
         </div>
-      </div>
 
-      <div class="form-group">
+        <!-- 本次包月首次使用日期 -->
         <div class="radio-group">
-          <span>第一次預約成功且付款成功：</span>
-          <label>
-            <input type="radio" name="firstBookingSuccess" value="yes" checked>
-            是 (符合)
-          </label>
-          <label>
-            <input type="radio" name="firstBookingSuccess" value="no">
-            否 (不符合)
+          <label>本次包月首次使用日期：
+            <input type="date" id="thisPackageStartDate">
           </label>
         </div>
-      </div>
 
-      <div class="form-group">
+        <!-- 本次包月最後一次使用日期 -->
         <div class="radio-group">
-          <span>包月不得與其他狗並用：</span>
-          <label>
-            <input type="radio" name="exclusiveUse_monthly" value="yes" checked>
-            是 (符合)
-          </label>
-          <label>
-            <input type="radio" name="exclusiveUse_monthly" value="no">
-            否 (不符合)
+          <label>本次包月最後一次使用日期：
+            <input type="date" id="thisPackageEndDate">
           </label>
         </div>
-      </div>
 
-      <div class="form-group">
+        <!-- 是否每次提前預約 -->
         <div class="radio-group">
-          <span>35天內是否完成4次使用：</span>
-          <label>
-            <input type="radio" name="timesUsed" value="yes" checked>
-            是 (已完成)
-          </label>
-          <label>
-            <input type="radio" name="timesUsed" value="no">
-            否 (未完成)
-          </label>
+          <span>每次提前 3 個工作天預約：</span>
+          <label><input type="radio" name="allAdvanceBooking" value="yes" checked> 是</label>
+          <label><input type="radio" name="allAdvanceBooking" value="no"> 否</label>
         </div>
-      </div>
 
-      <div class="form-group">
+        <!-- 是否每次準時到店 -->
         <div class="radio-group">
-          <span>每次都提前或準時到店：</span>
-          <label>
-            <input type="radio" name="arriveOnTime_monthly" value="yes" checked>
-            是 (符合)
-          </label>
-          <label>
-            <input type="radio" name="arriveOnTime_monthly" value="no">
-            否 (不符合)
-          </label>
+          <span>每次準時到店：</span>
+          <label><input type="radio" name="allOnTime" value="yes" checked> 是</label>
+          <label><input type="radio" name="allOnTime" value="no"> 否</label>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="lastPackageDate">距離上次包月結束日期：</label>
-        <input type="date" id="lastPackageDate">
+        <!-- 包月不得與其他狗共用 -->
+        <div class="radio-group">
+          <span>包月不得與其他狗共用：</span>
+          <label><input type="radio" name="exclusiveUse" value="yes" checked> 是</label>
+          <label><input type="radio" name="exclusiveUse" value="no"> 否</label>
+        </div>
       </div>
     </div>
 
     <button id="checkButton" onclick="checkDiscount()">檢查優惠資格</button>
     <div id="result"></div>
   </div>
-  
+
   <script>
     //=== 活動日期設定 ===
-    const startDate = new Date("2025-01-08T00:00:00");
+    const startDate = new Date("2025-01-12T00:00:00");
     const endDate = new Date("2025-03-31T23:59:59");
 
     //=== 網頁載入後檢查是否已超過活動時間 ===
@@ -497,12 +459,6 @@
         const lastVisitDate = new Date(document.getElementById('lastVisitDate_single').value);
         const daysBefore = calculateWorkingDays(lastVisitDate, new Date());
 
-        console.log("是否提前3天預約:", workDaysBeforeAppointment);
-        console.log("是否預付30%訂金:", deposit);
-        console.log("是否準時到店:", arriveOnTime);
-        console.log("距離上次來店日期:", lastVisitDate);
-        console.log("距離上次來店天數:", daysBefore);
-
         // 簡易判斷 (可依需求自行調整)
         if (
           selfPickup === "yes" &&
@@ -525,39 +481,41 @@
       } else {
         //=== 檢查包月條件 ===
         console.log("檢查包月條件...");
-        const selfPickup = document.querySelector('input[name="selfPickup_monthly"]:checked').value;
-        const firstBookingSuccess = document.querySelector('input[name="firstBookingSuccess"]:checked').value;
-        const timesUsed = document.querySelector('input[name="timesUsed"]:checked').value;
-        const arriveOnTimeMonthly = document.querySelector('input[name="arriveOnTime_monthly"]:checked').value;
-        if (!document.getElementById('lastPackageDate').value) {
-          alert('請輸入最後一次包月使用結束日期');
+        const lastPackageEndDate = new Date(document.getElementById("lastPackageEndDate").value);
+        const thisPackageStartDate = new Date(document.getElementById("thisPackageStartDate").value);
+        const thisPackageEndDate = new Date(document.getElementById("thisPackageEndDate").value);
+
+        const allAdvanceBooking = document.querySelector('input[name="allAdvanceBooking"]:checked').value;
+        const allOnTime = document.querySelector('input[name="allOnTime"]:checked').value;
+        const exclusiveUse = document.querySelector('input[name="exclusiveUse"]:checked').value;
+
+        const daysBetweenStartAndEnd = (thisPackageEndDate - thisPackageStartDate) / (1000 * 60 * 60 * 24);
+        const daysSinceLastPackage = (thisPackageStartDate - lastPackageEndDate) / (1000 * 60 * 60 * 24);
+
+        if (!document.getElementById('lastPackageEndDate').value) {
+          alert('請輸入上次最後一次包月使用結束日期');
           return false;
         }
-        const lastPackageDate = new Date(document.getElementById('lastPackageDate').value);
-        const daysSinceLast = calculateWorkingDays(lastPackageDate, new Date());
-        console.log(lastPackageDate)
 
-        console.log("第一次預約成功且付款成功:", firstBookingSuccess);
-        console.log("35天內是否完成4次使用:", timesUsed);
-        console.log("每次是否準時到店:", arriveOnTimeMonthly);
-        console.log("距離上次包月結束日期:", lastPackageDate);
-        console.log("距離上次包月結束天數:", daysSinceLast);
+        if (!document.getElementById('thisPackageStartDate').value) {
+          alert('請輸入本次包月第一次使用日期');
+          return false;
+        }
+
+        if (!document.getElementById('thisPackageEndDate').value) {
+          alert('請輸入本次包月最後一次使用日期');
+          return false;
+        }
 
         // 簡易判斷 (可依需求自行調整)
         if (
-          selfPickup === "yes" &&
-          firstBookingSuccess === "yes" &&
-          timesUsed === "yes" &&
-          arriveOnTimeMonthly === "yes" &&
-          daysSinceLast <= 20
+          daysBetweenStartAndEnd <= 35 &&
+          daysSinceLastPackage <= 20 &&
+          allAdvanceBooking === "yes" &&
+          allOnTime === "yes" &&
+          exclusiveUse === "yes"
         ) {
-          isQualified = true;
-        } else {
-          isQualified = false;
-        }
-
-        if (isQualified) {
-          resultText = `符合『包月』優惠資格，您可享「${discountInfo}」！`;
+          resultText = `符合『包月』優惠資格，下一次包月您可享「${discountInfo}」 + 免費護毛一次（20天內有效）！`;
         } else {
           resultText = "不符合『包月』優惠資格。";
         }
