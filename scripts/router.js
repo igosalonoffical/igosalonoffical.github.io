@@ -12,23 +12,41 @@ const loadContent = async (view) => {
     const response = await fetch(`${path}/index`);
     if (!response.ok) throw new Error(`Failed to load: ${path}`);
     const html = await response.text();
-    app.innerHTML = html;
+    app.innerHTML = html; // 將 HTML 內容插入 app 容器
 
-    // 加載對應的 JS
-    const scriptPath = `scripts${path}index.js`;
+    // 加載對應的 JS（如果存在）
+    const scriptPath = `scripts${path}/index.js`;
     const script = document.createElement('script');
     script.src = scriptPath;
     script.type = 'text/javascript';
     script.async = true;
 
-    // 清空舊腳本並插入到 section 後
-    scriptsContainer.innerHTML = ''; // 清空舊內容（如果需要）
-    document.body.appendChild(script); // 插入腳本到 body 的最後
+    // 清空舊腳本並插入新腳本
+    scriptsContainer.innerHTML = ''; // 確保容器為空
+    scriptsContainer.appendChild(script); // 動態加載頁面腳本
   } catch (error) {
     app.innerHTML = '<p>內容載入失敗，請稍後再試。</p>';
     console.error('Error:', error.message);
   }
 };
+
+// 檢查當前網址，是否需要重定向到 index?view=<頁面名稱>
+(function redirectToView() {
+  const currentPath = window.location.pathname; // 取得當前路徑
+  const basePath = '/index?view=';
+  const validViews = ['home', 'petservices', 'activity', 'about', 'contact', 'portfolio', 'posts'];
+
+  // 判斷當前路徑是否需要重定向
+  validViews.forEach(view => {
+    const viewPath = `/${view}/`;
+    const viewPathWithIndex = `${viewPath}index`;
+
+    if (currentPath === viewPath || currentPath === viewPathWithIndex) {
+      console.log(`Redirecting to: ${basePath}${view}`);
+      window.location.replace(`${basePath}${view}`);
+    }
+  });
+})();
 
 // 根據網址參數判斷要加載的頁面
 const getViewFromUrl = () => {
@@ -38,9 +56,8 @@ const getViewFromUrl = () => {
 
 // 初始化路由
 const initRouter = () => {
-  // 獲取當前視圖並加載內容
-  const currentView = getViewFromUrl();
-  loadContent(`/${currentView}/`);
+  const currentView = getViewFromUrl(); // 取得當前頁面名稱
+  loadContent(`/${currentView}/`); // 動態載入內容
 
   // 監聽導航連結點擊事件
   document.querySelectorAll('.nav-link').forEach(link => {
@@ -57,7 +74,7 @@ const initRouter = () => {
     });
   });
 
-  // 處理返回事件
+  // 處理瀏覽器返回事件
   window.addEventListener('popstate', (e) => {
     const view = e.state ? e.state.view : 'home';
     loadContent(`/${view}/`);
