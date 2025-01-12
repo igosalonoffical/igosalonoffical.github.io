@@ -1,5 +1,6 @@
 const app = document.getElementById('app');
 const scriptsContainer = document.getElementById('scripts');
+const head = document.head; // 用於插入 CSS 樣式表
 
 // 有效的頁面清單
 const validViews = ['home', 'petservices', 'activity', 'about', 'contact', 'portfolio', 'posts'];
@@ -18,7 +19,8 @@ const loadContent = async (view) => {
     app.innerHTML = html; // 將 HTML 內容插入 app 容器
 
     // 加載對應的 JS（如果存在）
-    const scriptPath = `scripts${path}/index.js`;
+    // const scriptPath = `scripts/pages${path}/index.js`;
+    const scriptPath = `scripts/pages${path.replace(/\/$/, '')}.js`;
     const script = document.createElement('script');
     script.src = scriptPath;
     script.type = 'text/javascript';
@@ -27,6 +29,19 @@ const loadContent = async (view) => {
     // 清空舊腳本並插入新腳本
     scriptsContainer.innerHTML = ''; // 確保容器為空
     scriptsContainer.appendChild(script); // 動態加載頁面腳本
+
+    // 加載對應的 CSS（如果存在）
+    const cssPath = `css/pages${path.replace(/\/$/, '')}.css`;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = cssPath;
+
+    // 檢查是否已經存在同名樣式表，避免重複插入
+    const existingLink = document.querySelector(`link[href="${cssPath}"]`);
+    if (!existingLink) {
+      head.appendChild(link);
+    }
+
   } catch (error) {
     app.innerHTML = '<p>內容載入失敗，請稍後再試。</p>';
     console.error('Error:', error.message);
@@ -77,6 +92,8 @@ const initRouter = () => {
   const currentView = getViewFromUrl(); // 取得當前頁面名稱
 
   // 如果頁面名稱無效，載入 404
+  console.log(validViews);
+  console.log(currentView);
   if (!validViews.includes(currentView)) {
     load404();
     return;
@@ -102,6 +119,7 @@ const initRouter = () => {
   // 處理瀏覽器返回事件
   window.addEventListener('popstate', (e) => {
     const view = e.state ? e.state.view : 'home';
+    console.log(validViews);
     if (!validViews.includes(view)) {
       load404();
     } else {

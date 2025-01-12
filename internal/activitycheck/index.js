@@ -43,7 +43,7 @@ document.title = `內部活動查詢系統`;
       const detailLink = activity['詳細連結']
         ? activity['詳細連結']
         : `/activity/edmlayout?view=${id.toLowerCase()}`; // 如果有詳細連結，則使用該連結，否則使用動態生成的連結
-      const verifyLink = `/activity/${id.toLowerCase()}/qualification/${id.toLowerCase()}_qualification`;
+      const verifyLink = activity['資格驗證'] && activity['資格驗證'] == true ? `/activity/${id.toLowerCase()}/qualification/${id.toLowerCase()}_qualification` : null;
 
       const row = document.createElement('tr');
       row.innerHTML = `
@@ -51,7 +51,7 @@ document.title = `內部活動查詢系統`;
               <a href="${detailLink}" class="text-blue-500 hover:underline">詳細</a>
           </td>
           <td class="border border-gray-300 px-4 py-2">
-              <a href="${verifyLink}" class="text-green-500 hover:underline">資格驗證</a>
+              <a href="${verifyLink}" class="text-green-500 hover:underline">${verifyLink ? '資格驗證' : ''}</a>
           </td>
           <td class="border border-gray-300 px-4 py-2">${id}</td>
           <td class="border border-gray-300 px-4 py-2">${name}</td>
