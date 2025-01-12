@@ -21,7 +21,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     if (result.success) {
       sessionStorage.setItem('auth', 'true'); // 記錄驗證狀態
       alert('登入成功！');
-      window.location.href = '/internal/activitycheck'; // 跳轉到內部頁面
+      window.location.href = '/internal/activitycheck/activitylist'; // 跳轉到內部頁面
     } else {
       alert('帳號或密碼錯誤，請重新輸入！');
     }
