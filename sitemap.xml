@@ -45,18 +45,18 @@
     </url>
 
     <!-- 作品集 -->
-    <url>
+    <!-- <url>
         <loc>https://igopetservice.com.tw/index?view=portfolio</loc>
         <lastmod>2025-01-10T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
-    </url>
+    </url> -->
 
     <!-- 文章 -->
-    <url>
+    <!-- <url>
         <loc>https://igopetservice.com.tw/index?view=posts</loc>
         <lastmod>2025-01-10T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.3</priority>
-    </url>
+    </url> -->
 </urlset>
