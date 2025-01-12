@@ -1,6 +1,9 @@
 const app = document.getElementById('app');
 const scriptsContainer = document.getElementById('scripts');
 
+// 有效的頁面清單
+const validViews = ['home', 'petservices', 'activity', 'about', 'contact', 'portfolio', 'posts'];
+
 // 動態載入內容和腳本
 const loadContent = async (view) => {
   try {
@@ -48,6 +51,21 @@ const loadContent = async (view) => {
   });
 })();
 
+// 載入 404 頁面
+const load404 = () => {
+  app.innerHTML = `
+        <div class="text-center mt-20">
+            <h1 class="text-6xl font-bold text-red-600 mb-4">404</h1>
+            <p class="text-xl text-gray-600">找不到您請求的頁面，3 秒後將返回首頁。</p>
+        </div>
+    `;
+
+  // 自動導回首頁
+  setTimeout(() => {
+    window.location.replace('/index?view=home');
+  }, 3000); // 3 秒後跳轉
+};
+
 // 根據網址參數判斷要加載的頁面
 const getViewFromUrl = () => {
   const params = new URLSearchParams(window.location.search);
@@ -57,7 +75,14 @@ const getViewFromUrl = () => {
 // 初始化路由
 const initRouter = () => {
   const currentView = getViewFromUrl(); // 取得當前頁面名稱
-  loadContent(`/${currentView}/`); // 動態載入內容
+
+  // 如果頁面名稱無效，載入 404
+  if (!validViews.includes(currentView)) {
+    load404();
+    return;
+  }
+
+  loadContent(`/${currentView}/`); // 動態載入對應的內容
 
   // 監聽導航連結點擊事件
   document.querySelectorAll('.nav-link').forEach(link => {
@@ -77,7 +102,11 @@ const initRouter = () => {
   // 處理瀏覽器返回事件
   window.addEventListener('popstate', (e) => {
     const view = e.state ? e.state.view : 'home';
-    loadContent(`/${view}/`);
+    if (!validViews.includes(view)) {
+      load404();
+    } else {
+      loadContent(`/${view}/`);
+    }
   });
 };
 

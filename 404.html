@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 找不到頁面</title>
+    <link href="/libs/tailwindcss/tailwind.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #ef4444; /* 紅色字體 */
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: #374151; /* 深灰色字體 */
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #3b82f6; /* 藍色背景 */
+            color: #fff;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #2563eb; /* 更深的藍色 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p>抱歉，我們無法找到您請求的頁面。</p>
+        <p>3 秒後將自動返回首頁。</p>
+        <a href="/index?view=home">立即返回首頁</a>
+    </div>
+
+    <script>
+        // 3 秒後跳轉首頁
+        setTimeout(() => {
+            window.location.replace('/index?view=home');
+        }, 3000); // 設定為 3 秒
+    </script>
+</body>
+</html>
