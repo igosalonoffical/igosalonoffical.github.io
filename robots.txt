@@ -6,4 +6,4 @@ Disallow: /activity/*/qualification/  # 禁止爬取資格驗證相關的活動�
 Allow: /
 
 # 網站地圖
-Sitemap: https://igopetservice.com.tw/sitemap.xml
+Sitemap: https://www.igopetservice.com.tw/sitemap.xml
