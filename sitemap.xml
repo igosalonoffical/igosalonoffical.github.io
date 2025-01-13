@@ -6,7 +6,7 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <!-- 首頁 -->
     <url>
-        <loc>https://igopetservice.com.tw/</loc>
+        <loc>https://www.igopetservice.com.tw/</loc>
         <lastmod>2025-01-10T00:00:00+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
     <!-- 服務頁面 -->
     <url>
-        <loc>https://igopetservice.com.tw/index?view=petservices</loc>
+        <loc>https://www.igopetservice.com.tw/index?view=petservices</loc>
         <lastmod>2025-01-10T00:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -22,7 +22,7 @@
 
     <!-- 活動查詢 -->
     <url>
-        <loc>https://igopetservice.com.tw/index?view=activity</loc>
+        <loc>https://www.igopetservice.com.tw/index?view=activity</loc>
         <lastmod>2025-01-10T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -30,7 +30,7 @@
 
     <!-- 關於我們 -->
     <url>
-        <loc>https://igopetservice.com.tw/index?view=about</loc>
+        <loc>https://www.igopetservice.com.tw/index?view=about</loc>
         <lastmod>2025-01-10T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.7</priority>
@@ -38,7 +38,7 @@
 
     <!-- 聯絡我們 -->
     <url>
-        <loc>https://igopetservice.com.tw/index?view=contact</loc>
+        <loc>https://www.igopetservice.com.tw/index?view=contact</loc>
         <lastmod>2025-01-10T00:00:00+00:00</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
@@ -46,7 +46,7 @@
 
     <!-- 作品集 -->
     <!-- <url>
-        <loc>https://igopetservice.com.tw/index?view=portfolio</loc>
+        <loc>https://www.igopetservice.com.tw/index?view=portfolio</loc>
         <lastmod>2025-01-10T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
@@ -54,7 +54,7 @@
 
     <!-- 文章 -->
     <!-- <url>
-        <loc>https://igopetservice.com.tw/index?view=posts</loc>
+        <loc>https://www.igopetservice.com.tw/index?view=posts</loc>
         <lastmod>2025-01-10T00:00:00+00:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.3</priority>
