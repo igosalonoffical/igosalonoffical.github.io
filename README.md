@@ -21,7 +21,7 @@
 
 
 ### 社交媒體與聯絡方式
-- **官方網站**: [愛狗Salon蘆荻店 Offical](https://igopetservice.com.tw/)
+- **官方網站**: [愛狗Salon蘆荻店 Offical](https://www.igopetservice.com.tw/)
 - **Facebook**: [愛狗Salon蘆荻店 Facebook](https://www.facebook.com/IGoSalonLudi)
 - **Instagram**: [愛狗Salon蘆荻店 Instagram](https://www.instagram.com/igosalonludi/)
 - **Line**: [聯絡我們 Line](https://line.me/R/ti/p/@898ssiqu)
