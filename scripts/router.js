@@ -3,7 +3,7 @@ const scriptsContainer = document.getElementById('scripts');
 const head = document.head; // 用於插入 CSS 樣式表
 
 // 有效的頁面清單
-const validViews = ['home', 'petservices', 'activity', 'about', 'contact', 'portfolio', 'posts'];
+const validViews = ['home', 'petservices', 'activity', 'about', 'contact', 'portfolio', 'posts', 'brands'];
 
 // 動態載入內容和腳本
 const loadContent = async (view) => {
@@ -52,7 +52,7 @@ const loadContent = async (view) => {
 (function redirectToView() {
   const currentPath = window.location.pathname; // 取得當前路徑
   const basePath = '/index?view=';
-  const validViews = ['home', 'petservices', 'activity', 'about', 'contact', 'portfolio', 'posts'];
+  const validViews = ['home', 'petservices', 'activity', 'about', 'contact', 'portfolio', 'posts', 'brands'];
 
   // 判斷當前路徑是否需要重定向
   validViews.forEach(view => {
