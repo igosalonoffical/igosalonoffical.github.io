@@ -1,3 +1,5 @@
+document.title = `愛狗Salon蘆荻店-合作品牌`;
+
 (async () => {
   const brandGrid = document.getElementById("brandGrid");
 

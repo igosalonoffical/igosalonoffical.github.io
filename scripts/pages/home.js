@@ -1,4 +1,4 @@
-document.title = `愛狗Salon蘆荻店-首頁`;
+document.title = `愛狗Salon蘆荻店`;
 
 (async () => {
   const carouselInner = document.getElementById("carouselInner");
