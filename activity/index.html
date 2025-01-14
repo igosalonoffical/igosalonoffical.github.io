@@ -1,33 +1,36 @@
 <section class="container mx-auto py-10">
-  <!-- 活動查詢標題 -->
-  <h1 class="text-4xl font-bold text-center mb-6">活動查詢</h1>
-  <p class="text-center text-lg mb-10 text-gray-700">
-      瀏覽我們的活動記錄，查看詳細資訊和活動狀態。
-  </p>
+    <!-- 活動查詢標題 -->
+    <h1 class="text-4xl font-bold text-center mb-6">活動查詢</h1>
+    <p class="text-center text-lg mb-2 text-gray-700">
+        愛狗Salon的最新活動都可以在這裡查詢！讓您在物價上漲的時代，也能讓錢包輕鬆一些。
+    </p>
+    <div class="mb-10 text-center text-red-700 border border-red-700 px-2 py-1 rounded">
+        每次消費只能使用一種優惠活動，別忘了主動出示活動畫面，讓我們知道您選擇的是哪一個優惠哦！
+    </div>
 
-  <!-- 查詢中提示 -->
-  <div id="loadingMessage" class="text-center text-gray-500 text-lg py-10">
-      活動查詢中...
-  </div>
+    <!-- 查詢中提示 -->
+    <div id="loadingMessage" class="text-center text-gray-500 text-lg py-10">
+        活動查詢中...
+    </div>
 
-  <!-- 活動查詢表格 -->
-  <div id="activityTableContainer" class="overflow-x-auto hidden">
-      <table class="table-auto w-full border-collapse border border-gray-300">
-          <thead>
-              <tr class="bg-gray-100">
-                  <th class="border border-gray-300 px-4 py-2">詳細</th>
-                  <th class="border border-gray-300 px-4 py-2">活動編號</th>
-                  <th class="border border-gray-300 px-4 py-2">活動名稱</th>
-                  <th class="border border-gray-300 px-4 py-2">起日</th>
-                  <th class="border border-gray-300 px-4 py-2">迄日</th>
-                  <th class="border border-gray-300 px-4 py-2">備註</th>
-              </tr>
-          </thead>
-          <tbody id="activityTable">
-              <!-- 動態生成活動資料 -->
-          </tbody>
-      </table>
-  </div>
+    <!-- 活動查詢表格 -->
+    <div id="activityTableContainer" class="overflow-x-auto hidden">
+        <table class="table-auto w-full border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border border-gray-300 px-4 py-2">詳細</th>
+                    <th class="border border-gray-300 px-4 py-2">活動編號</th>
+                    <th class="border border-gray-300 px-4 py-2">活動名稱</th>
+                    <th class="border border-gray-300 px-4 py-2">起日</th>
+                    <th class="border border-gray-300 px-4 py-2">迄日</th>
+                    <th class="border border-gray-300 px-4 py-2">備註</th>
+                </tr>
+            </thead>
+            <tbody id="activityTable">
+                <!-- 動態生成活動資料 -->
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <script src="/scripts/router.js"></script>

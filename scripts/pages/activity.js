@@ -1,4 +1,5 @@
 document.title = `愛狗Salon蘆荻店-活動查詢`;
+
 (async () => {
   console.log('活動查詢頁面已載入');
 
@@ -8,7 +9,6 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
   const today = new Date();
 
   // 從 Google Apps Script 獲取數據
-
   const fetchActivityData = async () => {
     const response = await fetch(getGSUrl() + '?action=getActivities');
     if (!response.ok) {
@@ -34,17 +34,31 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
   try {
     const activityData = await fetchActivityData();
 
+    // 排序邏輯
+    const sortedActivities = activityData.sort((a, b) => {
+      const endDateA = a['迄日'] ? new Date(a['迄日']) : null;
+      const endDateB = b['迄日'] ? new Date(b['迄日']) : null;
+
+      // 沒有迄日的活動排在最上面
+      if (!endDateA) return -1;
+      if (!endDateB) return 1;
+
+      // 有迄日的活動按迄日遞減排序
+      return endDateB - endDateA;
+    });
+
     // 動態生成表格內容
-    activityData.forEach((activity) => {
+    sortedActivities.forEach((activity) => {
       const id = activity['活動編號'];
       const name = activity['活動名稱'];
       const startDate = activity['起日'];
       const endDate = activity['迄日'];
-      const link = today >= new Date(startDate) && today <= new Date(endDate)
-        ? activity['詳細連結']
+      const link =
+        today >= new Date(startDate) && (!endDate || today <= new Date(endDate))
           ? activity['詳細連結']
-          : `/activity/edmlayout?view=${id.toLowerCase()}`
-        : null;
+            ? activity['詳細連結']
+            : `/activity/edmlayout?view=${id.toLowerCase()}`
+          : null;
 
       const row = document.createElement('tr');
       row.innerHTML = `
@@ -54,7 +68,7 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
           <td class="border border-gray-300 px-4 py-2">${id}</td>
           <td class="border border-gray-300 px-4 py-2">${name}</td>
           <td class="border border-gray-300 px-4 py-2">${startDate}</td>
-          <td class="border border-gray-300 px-4 py-2">${endDate}</td>
+          <td class="border border-gray-300 px-4 py-2">${endDate || ''}</td>
           <td class="border border-gray-300 px-4 py-2">${getStatus(startDate, endDate)}</td>
       `;
       activityTable.appendChild(row);
