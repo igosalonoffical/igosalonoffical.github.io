@@ -1,4 +1,4 @@
-document.title = `愛狗Salon蘆荻店-服務`;
+document.title = `愛狗Salon蘆荻店-服務內容`;
 console.log('服務');
 (async () => {
     const scrollContainer = document.getElementById('scrollContainer');

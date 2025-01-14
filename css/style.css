@@ -23,6 +23,21 @@ header {
   /* 適當設定層級 */
 }
 
+/* 描述文字樣式 */
+header div.text-sm {
+  color: #d1d5db; /* 淡灰色 */
+  font-size: 0.875rem; /* 手機端文字較小 */
+}
+
+header div.text-sm.md\:text-base {
+  font-size: 1rem; /* 桌面端文字適中 */
+}
+
+header div.bg-gray-700 {
+  background-color: #374151; /* 更深灰色區塊 */
+  color: #d1d5db;
+}
+
 main {
   margin-top: 64px;
   /* 預留與 header 高度相同的空間 */
