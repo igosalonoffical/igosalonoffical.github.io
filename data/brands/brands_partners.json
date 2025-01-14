@@ -22,10 +22,17 @@
     "description": "壹士達-雞老大"
   },
   {
-    "name": "壹士達-雞老大",
+    "name": "珍婗絲",
     "images": [
-      "images/brands/廠商-壹士達-雞老大3.jpg"
+      "images/brands/廠商-珍婗絲.jpg"
     ],
-    "description": "壹士達-雞老大"
+    "description": "珍婗絲"
+  },
+  {
+    "name": "艾詩貝",
+    "images": [
+      "images/brands/廠商-艾詩貝.png"
+    ],
+    "description": "艾詩貝"
   }
 ]
