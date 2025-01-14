@@ -2,7 +2,7 @@
   {
     "name": "阿培育",
     "images": ["images/brands/廠商-阿培育.png"],
-    "description": "阿培育。"
+    "description": "阿培育"
   },
   {
     "name": "惜時",
@@ -15,24 +15,24 @@
     "description": "壹士達"
   },
   {
-    "name": "雞老大",
+    "name": "壹士達-雞老大",
     "images": [
       "images/brands/廠商-壹士達-雞老大1.jpg"
     ],
-    "description": "雞老大"
+    "description": "壹士達-雞老大"
   },
   {
-    "name": "雞老大",
+    "name": "壹士達-雞老大",
     "images": [
       "images/brands/廠商-壹士達-雞老大2.jpg"
     ],
-    "description": "雞老大"
+    "description": "壹士達-雞老大"
   },
   {
-    "name": "雞老大",
+    "name": "壹士達-雞老大",
     "images": [
       "images/brands/廠商-壹士達-雞老大3.jpg"
     ],
-    "description": "雞老大"
+    "description": "壹士達-雞老大"
   }
 ]
