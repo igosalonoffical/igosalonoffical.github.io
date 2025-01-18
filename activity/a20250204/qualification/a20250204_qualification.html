@@ -253,20 +253,6 @@
 
       <div class="form-group">
         <div class="radio-group">
-          <span>是否已預付30%訂金：</span>
-          <label>
-            <input type="radio" name="deposit_single" value="yes" checked>
-            是 (已付)
-          </label>
-          <label>
-            <input type="radio" name="deposit_single" value="no">
-            否 (未付)
-          </label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="radio-group">
           <span>是否提前或準時到店：</span>
           <label>
             <input type="radio" name="arriveOnTime_single" value="yes" checked>
@@ -435,7 +421,7 @@
 
       // 3. 設定「新客 / 舊客 + 單次 / 包月」對應的折數
       //   新客： 單次小美 9折, 包月 95折
-      //   舊客： 單次小美 8折, 包月 85折
+      //   舊客： 單次小美 8折, 包月 88折
       if (customerType === "new" && discountType === "single") {
         discountInfo = "9折";
       } else if (customerType === "new" && discountType === "monthly") {
@@ -443,7 +429,7 @@
       } else if (customerType === "old" && discountType === "single") {
         discountInfo = "8折";
       } else if (customerType === "old" && discountType === "monthly") {
-        discountInfo = "85折";
+        discountInfo = "88折";
       }
 
       if (discountType === "single") {
@@ -451,7 +437,6 @@
         console.log("檢查單次小美條件...");
         const selfPickup = document.querySelector('input[name="selfPickup_single"]:checked').value;
         const workDaysBeforeAppointment = document.querySelector('input[name="workDaysBeforeAppointment_single"]:checked').value;
-        const deposit = document.querySelector('input[name="deposit_single"]:checked').value;
         const arriveOnTime = document.querySelector('input[name="arriveOnTime_single"]:checked').value;
         if (!document.getElementById('lastVisitDate_single').value) {
           alert('請輸入最後一次來店日期');
@@ -464,7 +449,6 @@
         if (
           selfPickup === "yes" &&
           workDaysBeforeAppointment === "yes" &&
-          deposit === "yes" &&
           arriveOnTime === "yes" &&
           daysBefore <= 12
         ) {
