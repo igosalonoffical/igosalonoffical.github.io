@@ -440,27 +440,22 @@ tbody tr:hover {
 }
 
 /* 狀態標籤樣式 */
-.status {
+table td .status {
   font-weight: bold;
   padding: 4px 8px;
   border-radius: 4px;
   display: inline-block;
 }
 
-.status.not-started {
+table td .status.not-started {
   background-color: #fbbf24;
-  /* 黃色 */
   color: #fff;
 }
-
-.status.in-progress {
+table td .status.in-progress {
   background-color: #34d399;
-  /* 綠色 */
   color: #fff;
 }
-
-.status.ended {
+table td .status.ended {
   background-color: #ef4444;
-  /* 紅色 */
   color: #fff;
 }

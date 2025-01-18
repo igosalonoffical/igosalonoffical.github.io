@@ -49,7 +49,7 @@ body {
   opacity: 1; /* 確保完全不透明 */
   border-radius: 15px; /* 圓角保留 */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 增加陰影效果 */
-  padding: 20px; /* 保持內邊距 */
+  padding: 10px; /* 保持內邊距 */
 }
 
 .activity-info {
@@ -73,7 +73,7 @@ h1 {
   font-size: 2.2rem;
   font-weight: 700;
   color: #444;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 /* 段落樣式 */

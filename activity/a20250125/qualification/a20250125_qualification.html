@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活動資格驗證</title>
+  <link href="/libs/tailwindcss/tailwind.css" rel="stylesheet">
+  <link href="/css/edmlayout.css" rel="stylesheet">
+  <style>
+    .form-section {
+      margin-bottom: 1.5rem;
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .form-section-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #5cb85c;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .radio-group input[type="radio"] {
+      margin-right: 0.5rem;
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    button {
+      background: #5cb85c;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 100%;
+      max-width: 400px;
+      margin: 1.5rem auto;
+      display: block;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #4a994a;
+    }
+
+    #result {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+  <div class="container mx-auto p-6 max-w-4xl bg-white rounded-lg shadow-lg">
+    <header class="text-center mb-6">
+      <h1 class="text-3xl font-bold text-green-600">活動資格驗證</h1>
+      <p class="text-gray-600 mt-2">確認是否符合單次小美活動資格</p>
+
+      <div class="activity-dates">
+        活動時間
+        <span id="activityStartDate">2025/01/25</span>~<span id="activityEndDate">2025/02/28</span>
+        <span id="activityStatus"></span>
+      </div>
+    </header>
+
+    <main>
+      <!-- 新客與舊客條件 -->
+      <div class="form-section">
+        <div class="form-section-title">參與身份</div>
+        <div class="radio-group">
+          <label><input type="radio" name="customerType" value="new" checked> 新客</label>
+          <label><input type="radio" name="customerType" value="old"> 舊客</label>
+        </div>
+      </div>
+
+      <!-- 基本條件 -->
+      <div class="form-section">
+        <div class="form-section-title">基本條件</div>
+        <div class="radio-group">
+          <label><input type="radio" name="selfPickup" value="yes" checked> 自行接送</label>
+          <label><input type="radio" name="selfPickup" value="no"> 未自行接送</label>
+        </div>
+        <div class="radio-group">
+          <label><input type="radio" name="preBooking" value="yes" checked> 提前 3 個工作天預約</label>
+          <label><input type="radio" name="preBooking" value="no"> 未提前預約</label>
+        </div>
+      </div>
+
+      <!-- 任務積分確認 -->
+      <div class="form-section">
+        <div class="form-section-title">任務積分確認</div>
+        <div class="radio-group">
+          <label><input type="radio" name="fbLike" value="yes" checked> Facebook 粉專按讚</label>
+          <label><input type="radio" name="fbLike" value="no"> 未完成</label>
+        </div>
+        <div class="radio-group">
+          <label><input type="radio" name="igFollow" value="yes" checked> Instagram 訂閱</label>
+          <label><input type="radio" name="igFollow" value="no"> 未完成</label>
+        </div>
+        <div class="radio-group">
+          <label><input type="radio" name="googleReview" value="yes" checked> Google 五星評論</label>
+          <label><input type="radio" name="googleReview" value="no"> 未完成</label>
+        </div>
+        <div class="radio-group">
+          <label><input type="radio" name="lineReview" value="yes" checked> Line 熱點五星評論</label>
+          <label><input type="radio" name="lineReview" value="no"> 未完成</label>
+        </div>
+        <div class="radio-group">
+          <label><input type="radio" name="fbReview" value="yes" checked> Facebook 評論推薦</label>
+          <label><input type="radio" name="fbReview" value="no"> 未完成</label>
+        </div>
+      </div>
+
+      <button id="checkQualification">檢查資格</button>
+      <div id="result" class="hidden"></div>
+    </main>
+  </div>
+
+  <script src="../../../internal/checkAuth.js"></script>
+  <script src="/scripts/activity/qualification.js"></script>
+  <script>
+     //=== 活動日期設定 ===
+    // 從 span 取得活動開始和結束日期
+    const startDateStr = document.getElementById('activityStartDate').textContent;
+    const endDateStr = document.getElementById('activityEndDate').textContent;
+
+    // 將字串轉換為 Date 物件
+    const startDate = new Date(startDateStr.replace(/-/g, '/')); // 處理日期格式，替換為正確的分隔符
+    const endDate = new Date(endDateStr.replace(/-/g, '/'));
+
+    //=== 網頁載入後檢查是否已超過活動時間 ===
+    window.addEventListener('DOMContentLoaded', () => {
+      checkActivityPeriod('activityStatus', startDate, endDate);
+    });
+
+    document.getElementById('checkQualification').addEventListener('click', () => {
+      const conditions = {
+        customerType: document.querySelector('input[name="customerType"]:checked').value,
+        selfPickup: document.querySelector('input[name="selfPickup"]:checked').value,
+        preBooking: document.querySelector('input[name="preBooking"]:checked').value,
+        fbLike: document.querySelector('input[name="fbLike"]:checked').value,
+        igFollow: document.querySelector('input[name="igFollow"]:checked').value,
+        googleReview: document.querySelector('input[name="googleReview"]:checked').value,
+        lineReview: document.querySelector('input[name="lineReview"]:checked').value,
+        fbReview: document.querySelector('input[name="fbReview"]:checked').value
+      };
+
+      let score = 0;
+      if (conditions.fbLike === 'yes') score += 0.5;
+      if (conditions.igFollow === 'yes') score += 0.5;
+      if (conditions.googleReview === 'yes') score += 0.5;
+      if (conditions.fbReview === 'yes') score += 0.5;
+      if (conditions.lineReview === 'yes') score += 0.5;
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.classList.remove('hidden');
+
+      if (conditions.selfPickup === 'no' || conditions.preBooking === 'no') {
+        resultDiv.textContent = '資格不符：未滿足基本條件。';
+      } else if (score < 0.5) {
+        resultDiv.textContent = '資格不符：積分不足。';
+      } else {
+        let discount = '';
+        if (conditions.customerType === 'new') {
+          if (score >= 2.5) discount = '77折 + 贈送護毛';
+          else if (score >= 2) discount = '77折';
+          else if (score >= 1.5) discount = '82折';
+          else if (score >= 1) discount = '87折';
+          else if (score >= 0.5) discount = '92折';
+        } else {
+          if (score >= 2.5) discount = '8折 + 贈送護毛';
+          else if (score >= 2) discount = '8折';
+          else if (score >= 1.5) discount = '85折';
+          else if (score >= 1) discount = '9折';
+          else if (score >= 0.5) discount = '95折';
+        }
+
+        resultDiv.textContent = `資格符合：可享 ${discount} 優惠！`;
+      }
+    });
+  </script>
+</body>
+
+</html>

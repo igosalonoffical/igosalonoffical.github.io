@@ -198,7 +198,8 @@
     <h1>優惠資格判斷</h1>
 
     <div class="activity-dates">
-      活動時間：2025/02/04 ~ 2025/03/31
+      活動時間
+      <span id="activityStartDate">2025/03/01</span>~<span id="activityEndDate">2025/04/30</span>
       <span id="activityStatus"></span>
     </div>
 
@@ -327,58 +328,22 @@
   </div>
 
   <script src="../../../internal/checkAuth.js"></script>
+  <script src="/scripts/activity/qualification.js"></script>
   <script>
     //=== 活動日期設定 ===
-    const startDate = new Date("2025-01-12T00:00:00");
-    const endDate = new Date("2025-03-31T23:59:59");
+    // 從 span 取得活動開始和結束日期
+    const startDateStr = document.getElementById('activityStartDate').textContent;
+    const endDateStr = document.getElementById('activityEndDate').textContent;
+
+    // 將字串轉換為 Date 物件
+    const startDate = new Date(startDateStr.replace(/-/g, '/')); // 處理日期格式，替換為正確的分隔符
+    const endDate = new Date(endDateStr.replace(/-/g, '/'));
 
     //=== 網頁載入後檢查是否已超過活動時間 ===
     window.addEventListener('DOMContentLoaded', () => {
-      checkActivityPeriod();
+      checkActivityPeriod('activityStatus', startDate, endDate);
       switchForm(); // 預設顯示單次小美區塊
     });
-
-    //=== 檢查活動日期 ===
-    function checkActivityPeriod() {
-      const now = new Date();
-      const activityStatusEl = document.getElementById('activityStatus');
-
-      if (now < startDate) {
-        // 活動尚未開始
-        activityStatusEl.textContent = "（活動尚未開始）";
-        // 也可以選擇是否做不可編輯處理
-        disablePage(true);
-      }
-      else if (now > endDate) {
-        // 活動已經結束
-        activityStatusEl.textContent = "（活動已結束）";
-        // 設為唯讀/不可點擊
-        disablePage(false);
-      }
-      else {
-        // 活動進行中
-        activityStatusEl.textContent = "（活動進行中）";
-      }
-    }
-
-    //=== 停用整頁 ===
-    // 若參數為 true，則只顯示活動尚未開始的狀態
-    // 若參數為 false，則顯示活動已結束的狀態
-    function disablePage(isNotStarted) {
-      // 使所有可互動的元素 (輸入框、按鈕等) 失效
-      document.querySelectorAll('input, button').forEach(el => {
-        el.disabled = true;
-      });
-      // 加上灰階效果提示
-      document.body.classList.add('disabled-page');
-
-      // 顯示不同提示文字
-      if (isNotStarted) {
-        document.getElementById('result').textContent = "活動尚未開始，暫時無法操作。";
-      } else {
-        document.getElementById('result').textContent = "活動已結束，感謝您的參與。";
-      }
-    }
 
     //=== 切換表單：根據優惠類型(單次/包月) 顯示/隱藏對應區塊 ===
     const typeRadios = document.querySelectorAll('input[name="discountType"]');

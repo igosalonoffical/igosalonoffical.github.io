@@ -20,14 +20,15 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
   // 判斷活動狀態
   const getStatus = (startDate, endDate) => {
     const start = new Date(startDate);
-    const end = new Date(endDate);
+    let end = endDate ? new Date(endDate) : new Date(today); // 如果沒有迄日，預設為今天
+    end.setDate(end.getDate() + 1); // 如果迄日為空，將其設置為今天 + 1天
 
     if (today < start) {
-      return '<span class="status not-started">尚未開始</span>';
+      return 'not-started'; // 尚未開始
     } else if (today >= start && today <= end) {
-      return '<span class="status in-progress">進行中</span>';
+      return 'in-progress'; // 進行中
     } else {
-      return '<span class="status ended">結束</span>';
+      return 'ended'; // 結束
     }
   };
 
@@ -36,15 +37,47 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
 
     // 排序邏輯
     const sortedActivities = activityData.sort((a, b) => {
-      const endDateA = a['迄日'] ? new Date(a['迄日']) : null;
-      const endDateB = b['迄日'] ? new Date(b['迄日']) : null;
+      const startDateA = new Date(a['起日']);
+      const startDateB = new Date(b['起日']);
+      
+      // 如果迄日為空，預設為今天 + 1天
+      const endDateA = a['迄日'] ? new Date(a['迄日']) : new Date(today);
+      const endDateB = b['迄日'] ? new Date(b['迄日']) : new Date(today);
+      endDateA.setDate(endDateA.getDate() + 1); // 將迄日設為今天 + 1天
+      endDateB.setDate(endDateB.getDate() + 1); // 將迄日設為今天 + 1天
 
-      // 沒有迄日的活動排在最上面
-      if (!endDateA) return -1;
-      if (!endDateB) return 1;
+      const statusA = getStatus(a['起日'], a['迄日']);
+      const statusB = getStatus(b['起日'], b['迄日']);
 
-      // 有迄日的活動按迄日遞減排序
-      return endDateB - endDateA;
+      // 進行中的活動排序
+      if (statusA === 'in-progress' && statusB === 'in-progress') {
+        if (!a['迄日'] && !b['迄日']) {
+          return startDateA - startDateB;
+        }
+        if (!a['迄日']) return -1;
+        if (!b['迄日']) return 1;
+        return endDateA - endDateB || startDateA - startDateB;
+      }
+
+      // 尚未開始的活動排序
+      if (statusA === 'not-started' && statusB === 'not-started') {
+        return startDateA - startDateB || (endDateA - endDateB);
+      }
+
+      // 結束的活動排序
+      if (statusA === 'ended' && statusB === 'ended') {
+        return endDateB - endDateA || startDateA - startDateB;
+      }
+
+      // 如果一個是進行中，另一個是尚未開始或者結束，進行中排在前面
+      if (statusA === 'in-progress') return -1;
+      if (statusB === 'in-progress') return 1;
+
+      // 如果一個是尚未開始，另一個是結束，尚未開始排在前面
+      if (statusA === 'not-started') return -1;
+      if (statusB === 'not-started') return 1;
+
+      return 0; // 如果狀態相同，保持原來的順序
     });
 
     // 動態生成表格內容
@@ -60,6 +93,8 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
             : `/activity/edmlayout?view=${id.toLowerCase()}`
           : null;
 
+      const statusClass = getStatus(startDate, endDate); // 獲取狀態的 class
+
       const row = document.createElement('tr');
       row.innerHTML = `
           <td class="border border-gray-300 px-4 py-2">
@@ -67,9 +102,11 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
           </td>
           <td class="border border-gray-300 px-4 py-2">${id}</td>
           <td class="border border-gray-300 px-4 py-2">${name}</td>
-          <td class="border border-gray-300 px-4 py-2">${startDate}</td>
-          <td class="border border-gray-300 px-4 py-2">${endDate || ''}</td>
-          <td class="border border-gray-300 px-4 py-2">${getStatus(startDate, endDate)}</td>
+          <td class="border border-gray-300 px-4 py-2">${startDate.replace(/-/g, "/")}</td>
+          <td class="border border-gray-300 px-4 py-2">${endDate.replace(/-/g, "/") || ''}</td>
+          <td class="border border-gray-300 px-4 py-2">
+              <span class="status ${statusClass}">${statusClass === 'not-started' ? '尚未開始' : statusClass === 'in-progress' ? '進行中' : '結束'}</span>
+          </td>
       `;
       activityTable.appendChild(row);
     });
