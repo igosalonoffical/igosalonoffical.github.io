@@ -10,7 +10,7 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
 
   // 從 Google Apps Script 獲取數據
   const fetchActivityData = async () => {
-    const response = await fetch(getGSUrl() + '?action=getActivities');
+    const response = await fetch('/data/activity/activity_activities_data.json');
     if (!response.ok) {
       throw new Error('無法獲取活動數據');
     }
