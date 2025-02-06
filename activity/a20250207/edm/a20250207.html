@@ -1,0 +1,172 @@
+<div class="activity-dm">
+  <style>
+    ul {
+      margin: 10px 0;
+      padding-left: 20px;
+      color: #2c3e50;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    section {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    section:hover {
+      transform: scale(1.05);
+    }
+
+    .highlight {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    .bling {
+      background: linear-gradient(45deg, #ff9a8b, #f7a7b7);
+      padding: 13px 13px;
+      border-radius: 8px;
+      text-align: center;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bling::before,
+    .bling::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      width: 160%;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(45deg);
+      animation: move 6s infinite linear;
+    }
+
+    .bling::after {
+      top: auto;
+      bottom: -50px;
+      animation-direction: reverse;
+    }
+
+    @keyframes move {
+      0% {
+        transform: translateX(-100%) rotate(45deg);
+      }
+
+      100% {
+        transform: translateX(100%) rotate(45deg);
+      }
+    }
+
+    .rainbow {
+      background: linear-gradient(45deg, #f2b97f, #f2a88f, #f29d99);
+      color: #fff;
+      font-size: 1.3rem;
+      padding: 8px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 0px; 
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      transition: background 0.5s ease;
+    }
+  </style>
+
+  <section>
+    <h1 class="bling">🎉 蛇年來到 單次小美優惠活動 🎉</h1>
+    <h2 class="text-center text-2xl font-bold text-red-600">(中小型+手吹限定)</h2>
+    <ul>
+      <span class="highlight">活動期間：</span>
+      <li>2025/02/07 ~ 2025/02/28</li>
+      <span class="highlight">適用對象：</span>
+      <li>新客(含60天以上未到愛狗消費的)</li>
+      <li>舊客</li>
+    </ul>
+  </section>
+
+  <!-- 活動條件 -->
+  <section>
+    <h2 class="rainbow">活動條件</h2>
+    <ul>
+      <li>需提前 <span class="highlight">3個工作天</span> 主動預約。</li>
+      <li>需自行接送。</li>
+      <li>不進烘箱，全程手吹的中小型犬及貓（如：貴賓、比熊、因健康不進烘箱或指定不進烘箱...等）。</li>
+      <li>不具攻擊性。</li>
+    </ul>
+  </section>
+
+  <!-- 任務積分 -->
+  <section>
+    <h2 class="rainbow">任務積分（最高 2.5 分）</h2>
+    <ul>
+      <li>Facebook 粉專按讚及追蹤：+ 0.5 分</li>
+      <li>Instagram 訂閱：+ 0.5 分</li>
+      <li>Google 五星評論：+ 0.5 分</li>
+      <li>Line 熱點五星評論：+ 0.5 分</li>
+      <li>Facebook 評論推薦：+ 0.5 分</li>
+    </ul>
+  </section>
+
+  <!-- 優惠條件與折扣 -->
+  <section class="mb-8">
+    <h2 class="rainbow">優惠條件與折扣</h2>
+    <table class="table-auto w-full border-collapse border border-gray-300 text-gray-700">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="border border-gray-300 px-4 py-2">積分</th>
+          <th class="border border-gray-300 px-4 py-2">舊客折扣</th>
+          <th class="border border-gray-300 px-4 py-2">新客折扣</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">0.5分</td>
+          <td class="border border-gray-300 px-4 py-2">尚未達到優惠門檻</td>
+          <td class="border border-gray-300 px-4 py-2">尚未達到優惠門檻</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">1分</td>
+          <td class="border border-gray-300 px-4 py-2">95折</td>
+          <td class="border border-gray-300 px-4 py-2">92折</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">1.5分</td>
+          <td class="border border-gray-300 px-4 py-2">9折</td>
+          <td class="border border-gray-300 px-4 py-2">87折</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">2分</td>
+          <td class="border border-gray-300 px-4 py-2">85折</td>
+          <td class="border border-gray-300 px-4 py-2">82折</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2">2.5分</td>
+          <td class="border border-gray-300 px-4 py-2">85折 + 贈送護毛</td>
+          <td class="border border-gray-300 px-4 py-2">82折 + 贈送護毛</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 注意事項 -->
+  <section>
+    <h3 class="rainbow">注意事項</h3>
+    <ul>
+      <li class="text-red-600">有跳蚤或毛打結需另收費</li>
+      <li class="highlight">參與任務使用活動優惠，每人限使用2次，每次1隻毛孩，身分以第一次參與為主。</li>
+      <li class="highlight">每項活動優惠折扣不得與其他優惠併用。</li>
+      <li>需自行接送。</li>
+      <li>優惠不得給其他狗或貓使用（限定該寵物）。</li>
+      <li>本活動規則需於活動期間內完成，逾期恕不適用。</li>
+      <li>✅ 凡參與本活動，即視同承認及接受本活動注意事項及相關規定。</li>
+      <li>本店家保有隨時修正、暫停或終止本活動之權利，若有未盡事宜，悉依本店家之解釋辦理；本公司保留最終解釋及決定權利。</li>
+      <li>本活動規則詳見活動網頁，參加者視為同意遵守所有規範。如不符合條件，主辦單位有權取消優惠並按原價計算。</li>
+    </ul>
+  </section>
+</div>
