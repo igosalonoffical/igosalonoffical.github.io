@@ -4,7 +4,7 @@ function getGSUrl() {
 
 const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
-
+console.log(menuToggle);
 if (menuToggle) {
   // 菜單按鈕點擊事件
   menuToggle.addEventListener('click', (event) => {
