@@ -39,7 +39,7 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
     const sortedActivities = activityData.sort((a, b) => {
       const startDateA = new Date(a['起日']);
       const startDateB = new Date(b['起日']);
-      
+
       // 如果迄日為空，預設為今天 + 1天
       const endDateA = a['迄日'] ? new Date(a['迄日']) : new Date(today);
       const endDateB = b['迄日'] ? new Date(b['迄日']) : new Date(today);
@@ -87,7 +87,8 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
       const startDate = activity['起日'];
       const endDate = activity['迄日'];
       const link =
-        today >= new Date(startDate) && (!endDate || today <= new Date(endDate))
+        today >= new Date(new Date(startDate).setDate(new Date(startDate).getDate() - 2)) &&
+          (!endDate || today <= new Date(endDate))
           ? activity['詳細連結']
             ? activity['詳細連結']
             : `/activity/edmlayout?view=${id.toLowerCase()}`
