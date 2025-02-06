@@ -114,6 +114,32 @@ nav a:hover {
   align-items: center;
 }
 
+/* 菜單的三條線 */
+#menuToggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  background-color: white;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* 添加過渡效果 */
+}
+
+/* 當手機菜單打開時，旋轉條紋，並改變菜單按鈕的樣式 */
+#menuToggle.open .bar:nth-child(1) {
+  transform: rotate(45deg);
+  position: relative;
+  top: 6px;
+}
+
+#menuToggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+#menuToggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg);
+  position: relative;
+  bottom: 6px;
+}
 
 /** layout */
 .logo {
