@@ -61,9 +61,9 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
       showSlide(currentIndex);
     });
 
-    const reserveChineseYear2025Button = document.getElementById("reserveChineseYear2025Button");
-    if (reserveChineseYear2025Button) {
-      reserveChineseYear2025Button.addEventListener("click", () => {
+    const reserveButton = document.getElementById("reserveButton");
+    if (reserveButton) {
+      reserveButton.addEventListener("click", () => {
         window.open("https://line.me/R/ti/p/@898ssiqu", "_blank");
       });
     }
