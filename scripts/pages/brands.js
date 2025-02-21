@@ -78,7 +78,7 @@ document.title = `愛狗Salon蘆荻店-合作品牌`;
       }
 
       card.innerHTML += `
-        <h3 class="text-lg font-semibold text-gray-800">${brand.name}</h3>
+        <h2 class="text-lg font-semibold text-gray-800">${brand.name}</h2>
         <p class="text-gray-600">${brand.description}</p>
       `;
 
