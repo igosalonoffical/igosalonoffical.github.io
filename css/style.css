@@ -397,6 +397,11 @@ button#openModal:hover {
 }
 
 /* Modal 顯示與隱藏效果 */
+body.modal-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
 #modal {
   display: flex;
   opacity: 0;
@@ -410,6 +415,8 @@ button#openModal:hover {
 }
 
 #modalContent {
+  max-height: 80vh; /* 讓 Modal 本身不超過視窗 */
+  overflow-y: auto; /* 允許內容滾動 */
   transform: scale(0.95);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;

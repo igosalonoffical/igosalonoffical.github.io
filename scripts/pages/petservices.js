@@ -68,7 +68,7 @@ console.log('服務');
 
     scrollContainer.addEventListener('touchmove', (e) => {
         const x = e.touches[0].pageX;
-        const walk = startX - x; // 滑動距離
+        const walk = (startX - x) * 0.7; // 滑動距離
         scrollContainer.scrollLeft = scrollLeft + walk;
     });
 })();
@@ -84,6 +84,7 @@ console.log('服務');
     openModal.addEventListener('click', () => {
         modal.classList.add('show');
         modalContent.classList.add('show');
+        document.body.classList.add('modal-open'); // 禁止滾動
     });
 
     // 關閉 Modal
@@ -91,6 +92,7 @@ console.log('服務');
         modalContent.classList.remove('show');
         setTimeout(() => {
             modal.classList.remove('show');
+            document.body.classList.remove('modal-open'); // 允許滾動
         }, 300); // 配合動畫淡出
     });
 
