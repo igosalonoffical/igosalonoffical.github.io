@@ -71,7 +71,7 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
     setInterval(() => {
       currentIndex = (currentIndex + 1) % slideElements.length;
       showSlide(currentIndex);
-    }, 5000); // 每 5 秒切換
+    }, 7000); // 每 7 秒切換
   };
 
   await loadSlides();

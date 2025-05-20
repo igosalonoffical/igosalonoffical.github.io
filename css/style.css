@@ -260,8 +260,8 @@ img {
 /* custom-div 內的圖片特殊處理 */
 .custom-div img {
   position: relative;
+  height: 200px;
   width: auto;
-  height: 100px;
   /* 讓圖片可以突破 carousel 的限制 */
   z-index: 1;
   /* 確保圖片在其他元素之上 */
@@ -270,8 +270,8 @@ img {
 }
 
 .custom-div img:hover {
-  height: auto;
-  width: 300px;
+  height: 300px;
+  width: auto;
   transform: scale(1.8) !important;
 }
 

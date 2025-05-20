@@ -1,7 +1,7 @@
 [
   {
     "type": "div",
-    "content": "<div class='custom-div'><h2>2025年2月超划算美容優惠活動開跑中！</h2><p>簡單查成績分任務，即可享有超優惠折扣！</p><p>寵物飼料、寵物零食，可代詢價、訂購，超低價販售。</p><button class='reserve-btn' id='reserveButton'>立即預約</button><img src='images/home/board.jpg' alt='2月超值優惠活動' class='block w-full mt-4'></div>"
+    "content": "<div class='custom-div'><p>寵物飼料、寵物零食，可代詢價、訂購，超低價販售。</p><button class='reserve-btn' id='reserveButton'>立即預約</button><img src='images/home/board.jpg' alt='' class='block w-full mt-4'></div>"
   },  
   { "type": "image", "src": "images/home/banner1.jpg", "alt": "Slide 1" },
   { "type": "image", "src": "images/home/banner2.jpg", "alt": "Slide 2" },
