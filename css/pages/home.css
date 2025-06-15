@@ -1,0 +1,133 @@
+/* 公告樣式 */
+.announcement-slide {
+  padding: 1.5rem;
+  background-color: #fff8f0;
+  border: 2px solid #e9c399;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(209, 134, 75, 0.15);
+  margin-bottom: 20px;
+}
+
+#announcementDetailsBtn {
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  display: inline-block !important;
+  cursor: pointer;
+}
+
+.list-circle > li {
+  list-style-type: circle;
+  margin-left: 1rem;
+}
+
+/* 確保模態框顯示在最上層 */
+#announcementModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#announcementModal .bg-white {
+  z-index: 10000;
+  height: auto;          /* 修改：移除固定高度 */
+  max-height: 90vh;      /* 修改：稍微降低最大高度 */
+  overflow-y: auto;
+  width: 95%;
+  margin: 0 auto;
+  -webkit-overflow-scrolling: touch; /* 增加：iOS滾动順暢 */
+}
+
+/* 調整 modal 內容樣式 */
+#announcementModal .announcement-content {
+  color: #2c3e50;
+}
+
+#announcementModal h2 {
+  background: linear-gradient(45deg, #ff9a8b, #f7a7b7);
+  padding: 13px;
+  border-radius: 8px;
+  text-align: center;
+  color: #fff;
+  font-size: 1.8rem !important;
+  font-weight: bold;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+#announcementModal h3 {
+  background: linear-gradient(45deg, #f2b97f, #f2a88f);
+  color: #fff;
+  font-size: 1.3rem !important;
+  padding: 8px 15px;
+  border-radius: 8px;
+  margin: 20px 0 10px;
+}
+
+#announcementModal p,
+#announcementModal li {
+  font-size: 1.1rem !important;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+#announcementModal .highlight {
+  color: #d97706;
+  font-weight: bold;
+}
+
+/* 按鈕樣式優化 */
+#announcementModal #closeModal {
+  font-size: 1.5rem;
+  padding: 8px;
+}
+
+/* 行動裝置樣式調整 */
+@media (max-width: 640px) {
+  #announcementModal .bg-white {
+    height: auto;          /* 修改：改為自動高度 */
+    max-height: 95vh;      /* 修改：稍微增加可視範圍 */
+    border-radius: 8px;    /* 修改：保持圓角 */
+    margin: 10px auto;     /* 增加：上下間距 */
+  }
+
+  #announcementModal h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  #announcementModal h3 {
+    font-size: 1.2rem !important;
+  }
+  
+  #announcementModal p,
+  #announcementModal li {
+    font-size: 1rem !important;
+  }
+
+  #announcementModal .text-lg {
+    font-size: 1.125rem;
+  }
+}
+
+/* 確保按鈕可見 */
+.bg-amber-600 {
+  background-color: #d97706;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.bg-amber-600:hover {
+  background-color: #b45309;
+}

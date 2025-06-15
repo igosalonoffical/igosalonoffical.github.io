@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>金愛GO美容優惠專案</title>
+  <style>
+    body {
+      font-family: 'Microsoft JhengHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f6d8bb 0%, #fff2e6 100%);
+      margin: 0;
+      padding: 0;
+      font-size: 15px;
+      color: #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .announcement {
+      width: 800px;
+      max-height: 98vh;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      border: 2px solid #e9c399;
+      box-shadow: 0 8px 20px rgba(209, 134, 75, 0.18);
+      color: #2a2a2a;
+      line-height: 1.5;
+      position: relative;
+      overflow: hidden;
+    }
+    .announcement::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #f2994a, #d17e40);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 15px;
+      border-bottom: 2px dashed #f3d5b5;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #d2691e;
+      margin-top: 0.3em;
+      margin-bottom: 0.2em;
+      font-size: 1.6em;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    }
+    h3 {
+      margin-top: 0.5em;
+      margin-bottom: 0.2em;
+      color: #b35d0e;
+      border-left: 4px solid #f2994a;
+      padding-left: 0.8rem;
+      font-size: 1.1em;
+      background-color: #fff8f0;
+      padding: 5px 10px 5px 10px;
+      border-radius: 0 8px 8px 0;
+    }
+    p {
+      margin-top: 0.2em;
+      margin-bottom: 0.2em;
+    }
+    ul {
+      padding-left: 1.2em;
+      margin-top: 0.2em;
+      margin-bottom: 0.2em;
+    }
+    ul ul {
+      margin-top: 0.2em;
+    }
+    li {
+      margin-bottom: 0.2em;
+      list-style-type: none;
+      position: relative;
+      padding-left: 5px;
+    }
+    li::before {
+      content: "•";
+      color: #f2994a;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    ul ul li::before {
+      content: "◦";
+      color: #d17e40;
+    }
+    strong {
+      color: #a0520d;
+      font-weight: bold;
+    }
+    em {
+      color: #666666;
+      font-style: italic;
+    }
+    .highlight {
+      background-color: #fff2dd;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid #f2994a;
+      margin: 5px 0;
+    }
+    .footer {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #926e4e;
+      border-top: 1px solid #f3d5b5;
+      padding-top: 10px;
+    }
+    .emoji {
+      font-size: 1.2em;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    .payment-methods {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
+    }
+    .payment-method {
+      text-align: center;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: #fff8f0;
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">
+    <div class="header">
+      <h2>📢 即日起取消包月方案，全新【金愛GO美容優惠】專案登場！</h2>
+      <p>親愛的毛孩家長您好：<br />
+        為了讓您消費更便利，本店即日起正式支援 <strong>LINE Pay</strong> 付款，<br />
+        不必攜帶現金，輕鬆用手機即可完成結帳！</p>
+    </div>
+
+    <h3><span class="emoji">❌</span> 包月方案取消</h3>
+    <ul>
+      <li>即日起停止提供包月及續約服務</li>
+      <li>原有包月次數仍可照常使用至使用完畢或期滿</li>
+    </ul>
+
+    <h3><span class="emoji">✨</span> 金愛GO美容優惠內容</h3>
+    <p>只要在上次美容後 <strong>10 天內回來</strong>，就能享有「<strong>金愛GO美容</strong>」的專屬折扣，<strong>折數和以前包月一樣划算！</strong></p>
+    <p>小美容：基本項目＋洗澡（含身體按摩）<br />
+       大美容：基本項目＋洗澡（含身體按摩）＋剪毛</p>
+    <div class="highlight">
+      <ul>
+        <li>
+          <strong>10 天內回訪：</strong><br />
+          小美容享 <strong>91 折</strong><br />
+          大美容享 <strong>93 折</strong><br />
+          <strong>※ 舉例說明：小美容原價 500 元，回訪優惠價為 455 元；大美容原價 1000 元，回訪優惠價為 930 元。</strong>
+        </li>
+      </ul>
+    </div>
+
+    <div class="highlight">
+      <p><strong>※ 舊包月客戶可享回訪期限延長至 14 天，仍享有專屬優惠及免費接送，不受 10 天回訪限制影響。</strong></p>
+    </div>
+
+    <h3><span class="emoji">🎁</span> 新客專屬</h3>
+    <p><strong>即日起，新朋友也有福了！首次消費就能直接享有「金愛GO美容優惠」專屬折扣，不用等第二次唷！</strong></p>
+
+    <h3><span class="emoji">🚗</span> 接送服務（限 10 天內回訪）</h3>
+    <ul>
+      <li><strong>舊包月客戶：</strong>維持原有免費接送安排</li>
+      <li><strong>金愛GO美容優惠客戶：</strong></li>
+      <ul>
+        <li>平日：2 公里內免費接送，<strong>起跳費 0 元</strong></li>
+        <li>假日：2 公里內加收 <strong>10 元起</strong></li>
+        <li>超過 2 公里：<strong>每 300 公尺加收 10 元</strong></li>
+        <li><em>（距離以 Google Maps 導航為準）</em></li>
+      </ul>
+    </ul>
+
+    <h3><span class="emoji">💳</span> 現有付款方式</h3>
+    <div class="payment-methods">
+      <div class="payment-method">現金</div>
+      <div class="payment-method">LINE Pay<br>(僅提供現場付款)</div>
+      <div class="payment-method">銀行轉帳</div>
+    </div>
+
+    <div class="footer">
+      <p>若有任何疑問，歡迎私訊預約或洽詢，感謝您的支持與信任🐾</p>
+    </div>
+  </div>
+</body>
+</html>

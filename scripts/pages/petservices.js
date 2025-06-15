@@ -42,18 +42,10 @@ console.log('服務');
     });
 
     // 自動滾動（5 秒）
-    let autoScroll = setInterval(() => {
-        if (currentIndex < maxIndex) {
-            currentIndex += visibleCards;
-        } else {
-            currentIndex = 0;
-        }
-        updateScrollPosition();
-    }, 5000);
+    let autoScroll;
 
-    // 重置自動滾動計時器
-    const resetAutoScroll = () => {
-        clearInterval(autoScroll);
+    const startAutoScroll = () => {
+        clearInterval(autoScroll); // 先清除舊的計時器
         autoScroll = setInterval(() => {
             if (currentIndex < maxIndex) {
                 currentIndex += visibleCards;
@@ -61,14 +53,24 @@ console.log('服務');
                 currentIndex = 0;
             }
             updateScrollPosition();
-        }, 5000);
+        }, 5000); // 設定 5 秒的間隔
     };
+
+    // 重置自動滾動計時器
+    const resetAutoScroll = () => {
+        clearInterval(autoScroll);
+        startAutoScroll();
+    };
+
+    // 啟動自動滾動
+    startAutoScroll();
 
     // 觸控滑動支持（手機和平板）
     let startX = 0;
     let scrollLeft = 0;
 
     scrollContainer.addEventListener('touchstart', (e) => {
+        clearInterval(autoScroll); // 觸摸時暫停自動滾動
         startX = e.touches[0].pageX;
         scrollLeft = scrollContainer.scrollLeft;
     });
@@ -77,6 +79,10 @@ console.log('服務');
         const x = e.touches[0].pageX;
         const walk = (startX - x) * 0.7; // 摩擦係數 0.7
         scrollContainer.scrollLeft = scrollLeft + walk;
+    });
+
+    scrollContainer.addEventListener('touchend', () => {
+        resetAutoScroll(); // 觸摸結束後重新啟動自動滾動
     });
 })();
 
