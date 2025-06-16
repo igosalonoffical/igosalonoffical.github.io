@@ -32,14 +32,14 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
 
       // 初始化輪播
       initCarousel(slides);
-      
+
       // 額外確保公告詳情按鈕可以點擊
       setupAnnouncementButton();
     } catch (error) {
       console.error("載入內容清單失敗:", error);
     }
   };
-  
+
   // 確保公告詳情按鈕能夠正確點擊
   const setupAnnouncementButton = () => {
     const announcementBtn = document.getElementById("announcementDetailsBtn");
@@ -47,14 +47,14 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
       // 清除舊的事件監聽器
       const newBtn = announcementBtn.cloneNode(true);
       announcementBtn.parentNode.replaceChild(newBtn, announcementBtn);
-      
+
       // 添加新的事件監聽器
       newBtn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
         showAnnouncementDetails();
       });
-      
+
       // 確保按鈕可見
       newBtn.style.display = "inline-block";
       newBtn.style.cursor = "pointer";
@@ -77,39 +77,39 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
 
     // 修正輪播計時器
     let autoSlideTimer;
-    
+
     const startAutoSlide = () => {
-        clearTimeout(autoSlideTimer); // 先清除舊的計時器
-        
-        const currentSlide = slides[currentIndex];
-        // 如果是公告，停留時間更長 (15秒)，其他為7秒
-        const slideTime = currentSlide && currentSlide.isAnnouncement ? 15000 : 7000;
-        
-        autoSlideTimer = setTimeout(() => {
-            currentIndex = (currentIndex + 1) % slideElements.length;
-            showSlide(currentIndex);
-            // 每次輪播切換後都重新設定按鈕
-            setupAnnouncementButton();
-            startAutoSlide(); // 繼續下一次輪播
-        }, slideTime);
+      clearTimeout(autoSlideTimer); // 先清除舊的計時器
+
+      const currentSlide = slides[currentIndex];
+      // 如果是公告，停留時間更長 (15秒)，其他為7秒
+      const slideTime = currentSlide && currentSlide.isAnnouncement ? 15000 : 7000;
+
+      autoSlideTimer = setTimeout(() => {
+        currentIndex = (currentIndex + 1) % slideElements.length;
+        showSlide(currentIndex);
+        // 每次輪播切換後都重新設定按鈕
+        setupAnnouncementButton();
+        startAutoSlide(); // 繼續下一次輪播
+      }, slideTime);
     };
-    
+
     // 開始自動輪播
     startAutoSlide();
-    
+
     // 點擊箭頭時重置計時器
     document.getElementById("prevSlide").addEventListener("click", () => {
-        clearTimeout(autoSlideTimer);
-        currentIndex = (currentIndex - 1 + slideElements.length) % slideElements.length;
-        showSlide(currentIndex);
-        startAutoSlide();
+      clearTimeout(autoSlideTimer);
+      currentIndex = (currentIndex - 1 + slideElements.length) % slideElements.length;
+      showSlide(currentIndex);
+      startAutoSlide();
     });
 
     document.getElementById("nextSlide").addEventListener("click", () => {
-        clearTimeout(autoSlideTimer);
-        currentIndex = (currentIndex + 1) % slideElements.length;
-        showSlide(currentIndex);
-        startAutoSlide();
+      clearTimeout(autoSlideTimer);
+      currentIndex = (currentIndex + 1) % slideElements.length;
+      showSlide(currentIndex);
+      startAutoSlide();
     });
 
     const reserveButton = document.getElementById("reserveButton");
@@ -118,7 +118,7 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
         window.open("https://line.me/R/ti/p/@898ssiqu", "_blank");
       });
     }
-    
+
     // 初始化公告詳情按鈕
     const announcementDetailsBtn = document.getElementById("announcementDetailsBtn");
     if (announcementDetailsBtn) {
@@ -129,7 +129,7 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
       });
     }
   };
-  
+
   // 顯示完整公告詳情的函數
   const showAnnouncementDetails = () => {
     console.log("顯示公告詳情");
@@ -137,7 +137,7 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
     if (existingModal) {
       existingModal.remove();
     }
-    
+
     const modalHtml = `
       <div id="announcementModal">
         <div class="bg-white rounded-lg p-6 max-w-2xl max-h-[90vh] overflow-y-auto mx-4">
@@ -207,15 +207,15 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
         </div>
       </div>
     `;
-    
+
     // 將模態框添加到頁面
     const modalContainer = document.createElement("div");
     modalContainer.innerHTML = modalHtml;
     document.body.appendChild(modalContainer);
-    
+
     // 確保模態框在頁面上時禁止背景滾動
     document.body.style.overflow = 'hidden';
-    
+
     // 添加關閉模態框的事件
     document.getElementById("closeModal").addEventListener("click", () => {
       const modal = document.getElementById("announcementModal");
@@ -225,7 +225,7 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
         document.body.style.overflow = '';
       }
     });
-    
+
     // 點擊模態框背景時也關閉
     document.getElementById("announcementModal").addEventListener("click", (e) => {
       if (e.target.id === "announcementModal") {
@@ -235,5 +235,10 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
     });
   };
 
+  if (typeof showAnnouncementDetails === 'function') {
+    showAnnouncementDetails();
+  }
+  
   await loadSlides();
 })();
+
