@@ -1,4 +1,5 @@
-<div class="activity-dm">
+<div class="activity-dm" id="activityDmMain" style="position:relative;">
+  <button id="screenshotBtn" style="position:absolute;top:10px;right:10px;z-index:10;padding:8px 16px;background:#f2a88f;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold;">一鍵截圖</button>
   <style>
     ul {
       margin: 10px 0;
@@ -192,6 +193,14 @@
             <li><em>（距離以 Google Maps 導航為準）</em></li>
           </ul>
         </li>
+        <li>
+          <span style="font-size:1.1em;font-weight:bold;color:#b45309;">接送說明：</span>
+          <ul class="list-disc pl-6"">
+            <li><span class="font-semibold">限定：</span>中、小型犬(可進運輸籠)</li>
+            <li><span class="font-semibold">交接地點：</span>接送樓層需在1樓與美容師交接毛孩</li>
+            <li><span class="font-semibold">假日限制：</span>如果是假日的話，目前只有提供接或是送回</li>
+          </ul>
+        </li>
       </ul>
     </div>
   </section>
@@ -209,3 +218,21 @@
     <p>若有任何疑問，歡迎私訊預約或洽詢，感謝您的支持與信任🐾</p>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+  document.getElementById('screenshotBtn').addEventListener('click', function() {
+    const target = document.getElementById('activityDmMain');
+    this.style.visibility = 'hidden';
+    html2canvas(target, {
+      backgroundColor: '#fff',
+      useCORS: true,
+      scale: window.devicePixelRatio
+    }).then(canvas => {
+      document.getElementById('screenshotBtn').style.visibility = 'visible';
+      const link = document.createElement('a');
+      link.download = '金愛GO美容優惠.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  });
+</script>
