@@ -185,14 +185,22 @@ document.title = `愛狗Salon蘆荻店 專業寵物美容`;
               <li><strong>舊包月客戶：</strong>維持原有免費接送安排</li>
               <li><strong>金愛GO美容優惠客戶：</strong>
                 <ul class="list-circle pl-6 mt-1">
-                  <li>平日：2 公里內免費接送，<strong>起跳費 0 元</strong></li>
-                  <li>假日：2 公里內加收 <strong>10 元起</strong></li>
-                  <li>超過 2 公里：<strong>每 300 公尺加收 10 元</strong></li>
+                  <li>平日：1 公里內免費接送，<strong>起跳費 0 元</strong></li>
+                  <li>假日：1 公里內加收 <strong>10 元起</strong></li>
+                  <li>超過 1 公里：<strong>每 300 公尺加收 10 元</strong></li>
                   <li><em>（距離以 Google Maps 導航為準）</em></li>
                 </ul>
               </li>
+              <li>
+                <span style="font-size:1.1em;font-weight:bold;color:#b45309;">接送說明：</span>
+                <ul class="list-disc pl-6" style="font-size:1.08em;">
+                  <li><span class="font-semibold text-amber-700">限定：</span>中、小型犬(可進運輸籠)</li>
+                  <li><span class="font-semibold text-amber-700">交接地點：</span>接送樓層需在1樓與美容師交接毛孩</li>
+                  <li><span class="font-semibold text-amber-700">假日限制：</span>如果是假日的話，目前只有提供接或是送回</li>
+                </ul>
+              </li>
             </ul>
-            
+
             <h3 class="text-lg font-bold text-amber-600 mb-2 border-l-4 border-amber-500 pl-2 bg-amber-50 py-1">💳 現有付款方式</h3>
             <div class="flex justify-around mb-4">
               <div class="text-center p-2 bg-amber-50 rounded w-1/4">現金</div>
