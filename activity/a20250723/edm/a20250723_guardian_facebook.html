@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>致敬守護者專屬美容優惠活動</title>
+  <style>
+    body {
+      font-family: 'Microsoft JhengHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f6d8bb 0%, #fff2e6 100%);
+      margin: 0;
+      padding: 0;
+      color: #444;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(209, 134, 75, 0.18);
+      border: 2px solid #e9c399;
+      margin: 30px 10px;
+      padding: 20px;
+      width: 800px;
+      max-width: 95vw;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .container:hover {
+      box-shadow: 0 12px 28px rgba(209, 134, 75, 0.25);
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #f2994a, #d17e40);
+      border-radius: 10px 10px 0 0;
+    }
+
+    h2 {
+      color: #d2691e;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.8em;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, #f2994a, transparent);
+    }
+
+    h3 {
+      color: #a0520d;
+      margin: 25px 0 15px 0;
+      text-align: center;
+      background: #fff8f0;
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 4px solid #f2994a;
+      font-size: 1.3em;
+    }
+
+    .activity-description {
+      background: #fff8f0;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 20px 0;
+      border-left: 4px solid #f2994a;
+      font-size: 1.0em;
+      color: #a0520d;
+      text-align: center;
+    }
+
+    .discount-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 5px 0;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(209, 134, 75, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .table-wrap {
+      margin: 5px 0;
+      overflow-x: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(209, 134, 75, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .table-wrap:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(209, 134, 75, 0.2);
+    }
+
+    .discount-table th {
+      background: #f2994a;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.05em;
+      border: 1px solid #f3d5b5;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    .discount-table td {
+      font-size: 1.05em;
+      color: #a0520d;
+      font-weight: bold;
+      background: #fefbf7;
+      border: 1px solid #f3d5b5;
+      padding: 12px 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .discount-table tr:hover td {
+      background: #fff8f0 !important;
+      box-shadow: inset 0 0 0 2px rgba(242, 153, 74, 0.3);
+    }
+
+    /* 特殊強調區塊 */
+    th.highlight {
+      font-weight: bold;
+      color: #8b4513;
+      background: #ffeedd !important;
+    }
+
+    .notes {
+      margin-top: 20px;
+      color: #a0520d;
+      font-size: 0.98em;
+      background: #fff8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      transition: all 0.3s ease;
+    }
+
+    .notes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(209, 134, 75, 0.15);
+    }
+
+    .notes ul {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    .notes li {
+      margin: 6px 0;
+    }
+
+    .screenshot-btn {
+      margin: 0;
+      display: block;
+      background: linear-gradient(90deg, #f2994a, #d17e40);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 25px;
+      font-size: 1.05em;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(209, 134, 75, 0.25);
+      transition: all 0.3s ease;
+    }
+
+    .screenshot-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px rgba(209, 134, 75, 0.3);
+    }
+
+    .fixed-screenshot {
+      position: fixed;
+      right: 32px;
+      bottom: 32px;
+      z-index: 9999;
+    }
+
+    .payment-methods {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+      gap: 10px;
+    }
+
+    .payment-method {
+      text-align: center;
+      padding: 12px 8px;
+      border-radius: 8px;
+      background-color: #fff8f0;
+      flex: 1;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(242, 153, 74, 0.2);
+    }
+
+    .payment-method:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(242, 153, 74, 0.15);
+      border-color: #f2994a;
+    }
+
+    .activity-info {
+      background: #fff8f0;
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin: 25px 0;
+      border-left: 4px solid #f2994a;
+      transition: all 0.3s ease;
+    }
+
+    .activity-info:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(209, 134, 75, 0.15);
+    }
+
+    .activity-info h4 {
+      color: #a0520d;
+      margin: 0 0 15px 0;
+      font-size: 1.3em;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 15px 10px;
+        max-width: 95vw;
+      }
+
+      .discount-table th,
+      .discount-table td {
+        padding: 8px 6px;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      .activity-description {
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="capture">
+    <h2>🐾 致敬守護者專屬美容優惠活動</h2>
+    <div style="text-align:center; color:#d2691e; font-size:1m;font-weight:bold;">
+      ※ 活動期間：2025/07/23 ~ 2025/09/30
+    </div>
+
+    <div class="activity-description">
+      為感謝在第一線守護我們生活安全、身體健康的英雄，特別推出專屬美容優惠活動！<br>
+      <b>對象：</b> 警察、消防、服務於區域醫院以上等級之護理人員（需附在職證明）
+    </div>
+
+    <h3>一、優惠折扣表</h3>
+    <div class="table-wrap">
+      <table class="discount-table">
+        <tr>
+          <th></th>
+          <th>小美容</th>
+          <th>大美容</th>
+        </tr>
+        <tr>
+          <th class="highlight">狗狗（中小型）</th>
+          <td>8折</td>
+          <td>88折</td>
+        </tr>
+        <tr>
+          <th class="highlight">貓咪</th>
+          <td>93折</td>
+          <td>95折</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>二、付款方式</h3>
+    <div class="payment-methods">
+      <div class="payment-method"><strong>現金付款</strong><br>直接在門市結帳</div>
+      <div class="payment-method"><strong>LINE Pay</strong><br>(僅限現場掃碼付款)</div>
+      <div class="payment-method"><strong>銀行轉帳</strong><br>詳情請洽店員</div>
+    </div>
+
+    <div class="notes">
+      <b>⚠️ 活動注意事項：</b>
+      <ul>
+        <li><strong>資格限制：</strong>本活動限本人及自家毛孩使用，需出示相關證明（如工作證、識別證等）。</li>
+        <li><strong>預約須知：</strong>需提前預約，請於預約時主動告知參加守護者專屬活動。</li>
+        <li><strong>適用範圍：</strong>狗狗、貓咪皆可享守護者專屬折扣。</li>
+        <li><strong>專案服務：</strong>本專案不含接送服務。</li>
+        <li><strong>活動詳情：</strong>活動詳情請參考本活動頁面說明，如不符合優惠資格條件，本店有權取消優惠並依原價計算。</li>
+        <li><strong>如有疑問：</strong>如有疑問請洽店內人員，以店內解釋為準。</li>
+        <li><strong>活動條款：</strong>本活動僅在公告期間內有效，逾期優惠自動失效。凡參與本活動，即視同完全了解並同意遵守本活動所有規範與條款。</li>
+        <li><strong>活動權利：</strong>本店保留隨時修改、調整或終止本活動之權利，如有任何未盡事宜，悉依本店解釋為準。</li>
+      </ul>
+    </div>
+    <div style="text-align: center; margin-top: 20px; color: #926e4e; font-size: 0.95em;">
+      <strong>愛狗Salon蘆荻店</strong> | 守護者專屬美容優惠活動<br>
+    </div>
+  </div>
+
+  <button class="screenshot-btn fixed-screenshot" onclick="takeScreenshot()">📸 一鍵截圖存檔</button>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script>
+    function takeScreenshot() {
+      const captureElement = document.querySelector('.container');
+      const screenshotBtn = document.querySelector('.screenshot-btn');
+      screenshotBtn.style.display = 'none';
+      html2canvas(captureElement, {
+        scale: 2,
+        backgroundColor: null,
+        logging: false,
+        useCORS: true
+      }).then(canvas => {
+        screenshotBtn.style.display = 'block';
+        const image = canvas.toDataURL("image/png");
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = '守護者專屬美容優惠_' + new Date().toISOString().slice(0, 10) + '.png';
+        link.click();
+      });
+    }
+  </script>
+</body>
+
+</html>

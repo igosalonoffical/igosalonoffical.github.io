@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>金洗愛GO & 超洗愛GO 方案說明表</title>
+  <style>
+    body {
+      font-family: 'Microsoft JhengHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f6d8bb 0%, #fff2e6 100%);
+      margin: 0;
+      padding: 0;
+      color: #444;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(209, 134, 75, 0.18);
+      border: 2px solid #e9c399;
+      margin: 30px 10px;
+      padding: 20px;
+      width: 800px;
+      max-width: 95vw;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .container:hover {
+      box-shadow: 0 12px 28px rgba(209, 134, 75, 0.25);
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #f2994a, #d17e40);
+      border-radius: 10px 10px 0 0;
+    }
+
+    h2 {
+      color: #d2691e;
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 1.8em;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, #f2994a, transparent);
+    }
+
+    h3 {
+      color: #a0520d;
+      margin: 25px 0 15px 0;
+      text-align: center;
+      background: #fff8f0;
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 4px solid #f2994a;
+      font-size: 1.3em;
+    }
+
+    .table-wrap {
+      margin: 20px 0;
+      overflow-x: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(209, 134, 75, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .table-wrap:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(209, 134, 75, 0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.05em;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid #f3d5b5;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    th {
+      background: #f2994a;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.05em;
+    }
+
+    tr:nth-child(even) {
+      background: #fefbf7;
+      transition: all 0.3s ease;
+    }
+
+    tr:hover {
+      background: #fff8f0 !important;
+      box-shadow: inset 0 0 0 2px rgba(242, 153, 74, 0.3);
+    }
+
+    /* 金洗愛GO 基礎方案 - 淺橘色 */
+    .basic-plan {
+      background: #fff4e6 !important;
+      color: #b8860b;
+      font-weight: bold;
+    }
+
+    /* 超洗愛GO 最優惠 (68折/81折) - 深紅色強調 */
+    .super-best {
+      background: #ffe0cc !important;
+      color: #cc5500;
+      font-weight: bold;
+    }
+
+    /* 超洗愛GO 中等優惠 (75折/83折) - 中橘色 */
+    .super-medium {
+      background: #ffebcc !important;
+      color: #d2691e;
+      font-weight: bold;
+    }
+
+    /* 超洗愛GO 基本優惠 (8折/86折) - 淺橘色 */
+    .super-basic {
+      background: #fff4e6 !important;
+      color: #b8860b;
+      font-weight: bold;
+    }
+
+    /* 超洗愛GO 區塊標示 */
+    td.highlight {
+      font-weight: bold;
+      color: #8b4513;
+      background: #ffeedd !important;
+    }
+
+    .service-info {
+      background: #f0f8ff;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      border-left: 4px solid #4682b4;
+    }
+
+    .service-info h4 {
+      color: #2e5984;
+      margin: 0 0 10px 0;
+      font-size: 1.1em;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .plan-card {
+      background: #fff8f0;
+      border: 2px solid #f2994a;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(242, 153, 74, 0.2);
+      border-color: #d17e40;
+    }
+
+    .plan-card h4 {
+      color: #d2691e;
+      margin: 0 0 15px 0;
+      font-size: 1.3em;
+    }
+
+    .plan-card .price {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #a0520d;
+      margin: 10px 0;
+    }
+
+    .plan-card .conditions {
+      font-size: 0.95em;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .notes {
+      margin-top: 20px;
+      color: #a0520d;
+      font-size: 0.98em;
+      background: #fff8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      transition: all 0.3s ease;
+    }
+
+    .notes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(209, 134, 75, 0.15);
+    }
+
+    .notes ul {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    .notes li {
+      margin: 6px 0;
+    }
+
+    .screenshot-btn {
+      margin: 0;
+      display: block;
+      background: linear-gradient(90deg, #f2994a, #d17e40);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 25px;
+      font-size: 1.05em;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(209, 134, 75, 0.25);
+      transition: all 0.3s ease;
+    }
+
+    .screenshot-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px rgba(209, 134, 75, 0.3);
+    }
+
+    .fixed-screenshot {
+      position: fixed;
+      right: 32px;
+      bottom: 32px;
+      z-index: 9999;
+    }
+
+    .payment-methods {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+      gap: 10px;
+    }
+
+    .payment-method {
+      text-align: center;
+      padding: 12px 8px;
+      border-radius: 8px;
+      background-color: #fff8f0;
+      flex: 1;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(242, 153, 74, 0.2);
+    }
+
+    .payment-method:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(242, 153, 74, 0.15);
+      border-color: #f2994a;
+    }
+
+    .activity-description {
+      background: #fff8f0;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 20px 0;
+      border-left: 4px solid #f2994a;
+      font-size: 1.0em;
+      color: #a0520d;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 15px 10px;
+        max-width: 95vw;
+      }
+
+      table {
+        font-size: 0.9em;
+      }
+
+      th,
+      td {
+        padding: 8px 6px;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      h3 {
+        font-size: 1.15em;
+      }
+
+      .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .plan-card {
+        padding: 15px;
+      }
+
+      .activity-description {
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="capture">
+    <h2>🐾 金洗愛GO & 超洗愛GO 方案詳細說明表</h2>
+    <div style="text-align:center; color:#d2691e; font-size:1em; font-weight:bold;">
+      ※ 活動期間：2025/07/23 ~ 2025/09/30
+    </div>
+
+    <div class="activity-description">
+      <div>✨ 全新 <strong style="color:#d2691e;">「金洗愛GO美容」</strong>方案登場</div>
+      <div>🚀 搭載連續使用3次後，第4次自動升級享受 <strong style="color:#cc5500;">「超洗愛GO美容」超值折扣</strong>！</div>
+      <div style="margin-top:6px;color:#d2691e;font-weight:bold;">※ 本專案僅限狗狗適用，貓咪暫不適用此優惠</div>
+    </div>
+
+    <h3>一、各方案折扣比較表</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>方案名稱</th>
+          <th>適用對象</th>
+          <th>回訪時間</th>
+          <th>小美容折扣</th>
+          <th>大美容折扣</th>
+        </tr>
+        <tr>
+          <td rowspan="4"><b>金洗愛GO美容</b></td>
+          <td>新客戶首次光臨</td>
+          <td>-</td>
+          <td class="basic-plan">91折</td>
+          <td class="basic-plan">93折</td>
+        </tr>
+        <tr>
+          <td>10天內回訪客戶</td>
+          <td>10天內</td>
+          <td class="basic-plan">91折</td>
+          <td class="basic-plan">93折</td>
+        </tr>
+        <tr>
+          <td>同時美容兩隻狗狗</td>
+          <td>-</td>
+          <td class="basic-plan">91折</td>
+          <td class="basic-plan">93折</td>
+        </tr>
+        <tr>
+          <td>原包月客人（14天內持續小美容）</td>
+          <td>14天內</td>
+          <td class="basic-plan">91折</td>
+          <td class="basic-plan">93折</td>
+        </tr>
+        <tr>
+          <td rowspan="3" class="highlight"><b>超洗愛GO美容</b></td>
+          <td rowspan="3">連續三次金洗愛GO<br>美容後自動升級</td>
+          <td class="highlight">7天內</td>
+          <td class="super-best">68折</td>
+          <td class="super-best">81折</td>
+        </tr>
+        <tr>
+          <td>8-10天</td>
+          <td class="super-medium">75折</td>
+          <td class="super-medium">83折</td>
+        </tr>
+        <tr>
+          <td>11-14天</td>
+          <td class="super-basic">8折</td>
+          <td class="super-basic">86折</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="comparison-grid">
+      <div class="plan-card">
+        <h4>🌟 金洗愛GO美容</h4>
+        <div class="price">小美容 91折 | 大美容 93折</div>
+        <div class="conditions">
+          ✓ 新客戶立即享有<br>
+          ✓ 10天內回訪維持優惠<br>
+          ✓ 同時兩隻狗狗也適用<br>
+          <span style="color:#d2691e;font-weight:bold;">※ 活動期間：2025/07/23 ~ 2025/9/30</span>
+        </div>
+      </div>
+      <div class="plan-card">
+        <h4>⭐ 超洗愛GO美容</h4>
+        <div class="price">小美容最低 68折 | 大美容最低 81折</div>
+        <div class="conditions">
+          ✓ 連續三次金洗愛GO後升級<br>
+          ✓ 7天內回訪享最低折扣<br>
+          ✓ 最高可享32%折扣優惠<br>
+          <span style="color:#d2691e;font-weight:bold;">※ 活動期間：2025/07/23 ~ 2025/9/30</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>二、接送服務說明</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>客戶類型</th>
+          <th>平日接送</th>
+          <th>假日接送</th>
+          <th>備註</th>
+        </tr>
+        <tr>
+          <td><b>一般客戶</b></td>
+          <td>1公里內+50元<br>超過1公里每300公尺+10元</td>
+          <td>暫不提供</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td class="highlight"><b>金洗愛GO/超洗愛GO客戶</b></td>
+          <td class="highlight">1公里內免費<br>超過1公里每300公尺+10元</td>
+          <td class="super-medium">1公里內+10元<br>超過1公里每300公尺+10元</td>
+          <td>需10天內回訪資格</td>
+        </tr>
+      </table>
+      <div
+        style="margin-top:12px; color:#a0520d; font-size:0.98em; background:#fff8f0; border-radius:8px; padding:10px 16px;">
+        <b>接送服務補充說明：</b>
+        <ul style="margin:8px 0 0 18px;">
+          <li>適用寵物：僅限中、小型犬（可進入運輸籠的尺寸）</li>
+          <li>交接位置：接送地點需為一樓，由飼主與美容師直接交接毛孩</li>
+          <li>假日服務：假日期間僅提供單趟接或送服務，不提供往返接送</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>三、美容項目說明</h3>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>美容類型</th>
+          <th>包含項目</th>
+        </tr>
+        <tr>
+          <td><b>小美容</b></td>
+          <td>基本項目 + 洗澡（含身體按摩）</td>
+        </tr>
+        <tr>
+          <td><b>大美容</b></td>
+          <td>基本項目 + 洗澡（含身體按摩）+ 剪毛</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>四、付款方式</h3>
+    <div class="payment-methods">
+      <div class="payment-method"><strong>現金付款</strong><br>直接在門市結帳</div>
+      <div class="payment-method"><strong>LINE Pay</strong><br>(僅限現場掃碼付款)</div>
+      <div class="payment-method"><strong>銀行轉帳</strong><br>詳情請洽店員</div>
+    </div>
+
+    <div class="notes">
+      <b>⚠️ 活動注意事項：</b>
+      <ul>
+        <li><strong>超洗愛GO資格限制：</strong>超洗愛GO美容資格僅限符合資格的毛孩本人使用，禁止轉讓其他毛孩，每隻狗狗資格單獨計算。</li>
+        <li><strong>原包月會員專屬權益：</strong>原包月客人，且持續有在14天內小美容的客人，可享回訪期限延長至14天，保留專屬優惠及免費接送服務，不受10天回訪限制。（僅限狗狗）</li>
+        <li><strong>升級條件：</strong>連續三次金洗愛GO美容，第四次自動升級為超洗愛GO。</li>
+        <li><strong>額外服務：</strong>專業手吹、大量廢毛處理等額外服務費用不包含在折扣內。</li>
+        <li><strong>接送安全：</strong>接送服務前將進行安全評估，確保寵物與美容師安全。</li>
+        <li><strong>預約建議：</strong>建議提前1-2天預約，確保服務時段。</li>
+        <li><strong>適用範圍：</strong>所有優惠專案僅適用於狗狗，貓咪美容暫不適用此優惠。</li>
+        <li><strong>免責聲明：</strong>如寵物有特殊疾病或行為問題，請事先告知並配合店家安全規範。</li>
+        <li><strong>最終解釋：</strong>如有疑問請洽店內人員，以店內解釋為準。</li>
+        <li><strong>活動條款：</strong>本活動僅在公告期間內有效，逾期優惠自動失效。凡參與本活動，即視同完全了解並同意遵守本活動所有規範與條款。</li>
+        <li><strong>活動權利：</strong>本店保留隨時修改、調整或終止本活動之權利，如有任何未盡事宜，悉依本店解釋為準。</li>
+      </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px; color: #926e4e; font-size: 0.95em;">
+      <strong>愛狗Salon蘆荻店</strong> | 金洗愛GO美容專案 & 超洗愛GO美容專案（僅限狗狗）<br>
+    </div>
+  </div>
+
+  <button class="screenshot-btn fixed-screenshot" onclick="takeScreenshot()">📸 一鍵截圖存檔</button>
+
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script>
+    function takeScreenshot() {
+      const captureElement = document.getElementById('capture');
+
+      html2canvas(captureElement, {
+        scale: 2,
+        backgroundColor: null,
+        logging: false,
+        useCORS: true
+      }).then(canvas => {
+        const image = canvas.toDataURL("image/png");
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = '金洗愛GO方案說明表_' + new Date().toISOString().slice(0, 10) + '.png';
+        link.click();
+      });
+    }
+  </script>
+</body>
+
+</html>
