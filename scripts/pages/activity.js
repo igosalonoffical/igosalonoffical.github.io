@@ -86,9 +86,14 @@ document.title = `愛狗Salon蘆荻店-活動查詢`;
       const name = activity['活動名稱'];
       const startDate = activity['起日'];
       const endDate = activity['迄日'];
+      // 只比較日期，不比較時間
+      const todayDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const startDateObj = new Date(startDate);
+      const startDateMinus2 = new Date(startDateObj.getFullYear(), startDateObj.getMonth(), startDateObj.getDate() - 2);
+      const endDateObj = endDate ? new Date(endDate) : null;
       const link =
-        today >= new Date(new Date(startDate).setDate(new Date(startDate).getDate() - 2)) &&
-          (!endDate || today <= new Date(endDate))
+        todayDateOnly >= startDateMinus2 &&
+        (!endDateObj || todayDateOnly <= new Date(endDateObj.getFullYear(), endDateObj.getMonth(), endDateObj.getDate()))
           ? activity['詳細連結']
             ? activity['詳細連結']
             : `/activity/edmlayout?view=${id.toLowerCase()}`
