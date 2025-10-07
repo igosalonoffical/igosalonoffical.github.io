@@ -1,12 +1,4 @@
-[
-  {
-    "type": "div",
-    "content": "<div class='custom-div' style='background: linear-gradient(135deg, #ffd700, #ffed4e); border: 2px solid #e6c200; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);'><p style='color: #8b6914; font-weight: bold; margin-bottom: 12px;'>🎉 7月新活動開跑！「金洗愛GO & 超洗愛GO」狗狗專屬美容優惠 + 「守護者專屬美容」警消護理人員專案，詳情請洽活動查詢！</p><button class='reserve-btn' onclick='window.location.href=\"/index?view=activity\"' style='background: linear-gradient(135deg, #ff8c00, #ffa500); color: white; border: none; padding: 10px 20px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;' onmouseover='this.style.transform=\"translateY(-2px)\"; this.style.boxShadow=\"0 6px 15px rgba(255, 140, 0, 0.4)\"' onmouseout='this.style.transform=\"translateY(0)\"; this.style.boxShadow=\"none\"'>查看活動詳情</button></div>"
-  },
-  {
-    "type": "div",
-    "content": "<div class='custom-div'><p>寵物飼料、寵物零食，可代詢價、訂購，超低價販售。</p><button class='reserve-btn' id='reserveButton'>立即預約</button><img src='images/home/board.jpg' alt='' class='block w-full mt-4'></div>"
-  },  
+[ 
   { "type": "image", "src": "images/home/banner1.jpg", "alt": "Slide 1" },
   { "type": "image", "src": "images/home/banner2.jpg", "alt": "Slide 2" },
   { "type": "image", "src": "images/home/banner3.jpg", "alt": "Slide 3" }
